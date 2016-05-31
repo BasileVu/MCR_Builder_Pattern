@@ -11,7 +11,7 @@ import java.util.LinkedList;
  */
 public class PizzaBuilder extends FoodBuilder {
 
-    private final LinkedList<Ingredient> toppings = new LinkedList<>();
+    private final LinkedList<Ingredient> ingredients = new LinkedList<>();
     private Dough base;
 
     @Override
@@ -28,7 +28,7 @@ public class PizzaBuilder extends FoodBuilder {
     @Override
     public void addIngredient(Ingredient ingredient) {
         if (base != null) {
-            toppings.add(ingredient);
+            ingredients.add(ingredient);
         }
         // TODO what to do if could not be added (animation on the GUI ?)
     }
@@ -36,12 +36,15 @@ public class PizzaBuilder extends FoodBuilder {
     /**
      * Bakes the Pizza.
      *
-     * For burnable toppings, slightly burn them if they are not under a meltable topping.
-     * For meltable toppings, melt them.
+     * For burnable ingredients, slightly burn them if they are not under a meltable topping.
+     * For meltable ingredients, melt them.
      */
     @Override
     public void bake() {
-        // TODO
+        // FIXME
+        for (Ingredient i: ingredients) {
+            i.bake();
+        }
     }
 
     public Pizza getPizza() {
@@ -49,6 +52,6 @@ public class PizzaBuilder extends FoodBuilder {
             // TODO
         }
 
-        return new Pizza(base, toppings);
+        return new Pizza(base, ingredients);
     }
 }

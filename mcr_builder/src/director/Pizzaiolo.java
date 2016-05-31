@@ -1,6 +1,7 @@
 package director;
 
 import builder.PizzaBuilder;
+import ingredient.Cheese;
 import ingredient.Onion;
 import ingredient.Tomato;
 import product.Pizza;
@@ -16,7 +17,9 @@ public class Pizzaiolo {
         PizzaBuilder builder = new PizzaBuilder();
         builder.buildBase();
         builder.addIngredient(new Tomato());
+        builder.addIngredient(new Cheese("Mozarella", 1));
         builder.addIngredient(new Onion());
+        builder.bake();
         return builder.getPizza();
     }
 }
