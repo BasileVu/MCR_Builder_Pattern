@@ -1,7 +1,5 @@
 package gui;
 
-import director.Pizzaiolo;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,21 +11,43 @@ public class View extends JFrame {
 
         setLayout(new BorderLayout());
 
-        BuilderPanel pizzaPanel = new BuilderPanel();
-        BuilderPanel burgerPanel = new BuilderPanel();
+        PizzaPanel pizzaPanel = new PizzaPanel();
+        BurgerPanel burgerPanel = new BurgerPanel();
+
+        JPanel pizzaTab = new JPanel();
+        pizzaTab.setLayout(new BorderLayout());
+
+        JPanel pizzaButtons = new JPanel();
+        pizzaButtons.setLayout(new GridLayout(5,1));
+
+        JButton addDoughButton = new JButton("Dough");
+        JButton addTomatoButton = new JButton("Tomato");
+        JButton addOnion = new JButton("Onion");
+        JButton addMozzarellaButton = new JButton("Mozzarella");
+
+        addDoughButton.addActionListener(ae -> pizzaPanel.buildBase());
+        addTomatoButton.addActionListener(ae -> pizzaPanel.addTomato());
+        addMozzarellaButton.addActionListener(ae -> pizzaPanel.addMozzarella());
+        addOnion.addActionListener(ae -> pizzaPanel.addOnion());
+
+        pizzaButtons.add(addDoughButton);
+        pizzaButtons.add(addTomatoButton);
+        pizzaButtons.add(addMozzarellaButton);
+        pizzaButtons.add(addOnion);
+
+        pizzaTab.add(pizzaPanel, BorderLayout.CENTER);
+        pizzaTab.add(pizzaButtons, BorderLayout.WEST);
 
         JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("Pizza", pizzaPanel);
+        tabbedPane.addTab("Pizza", pizzaTab);
+
+        // FIXME tab for burger
         tabbedPane.addTab("Burger", burgerPanel);
 
         add(tabbedPane, BorderLayout.NORTH);
 
         JButton bakeButton = new JButton("Bake");
-
-        // FIXME : only there to test
-        bakeButton.addActionListener(ae -> {
-            pizzaPanel.write(new Pizzaiolo().build().toString());
-        });
+        bakeButton.addActionListener(ae -> pizzaPanel.bake());
 
         JPanel bottom = new JPanel();
         bottom.setLayout(new GridBagLayout());
