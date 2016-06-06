@@ -1,5 +1,6 @@
 package builder;
 
+import exceptions.MissingBaseException;
 import ingredient.Dough;
 import ingredient.Ingredient;
 import product.Pizza;
@@ -41,15 +42,18 @@ public class PizzaBuilder extends FoodBuilder {
      */
     @Override
     public void bake() {
-        // FIXME
+        if (base != null) {
+            base.bake();
+        }
+
         for (Ingredient i: ingredients) {
             i.bake();
         }
     }
 
-    public Pizza getPizza() {
-        if (base != null) {
-            // TODO
+    public Pizza getPizza() throws MissingBaseException{
+        if (base == null) {
+            throw new MissingBaseException();
         }
 
         return new Pizza(base, ingredients);

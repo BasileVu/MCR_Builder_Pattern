@@ -18,7 +18,7 @@ public class View extends JFrame {
         pizzaTab.setLayout(new BorderLayout());
 
         JPanel pizzaButtons = new JPanel();
-        pizzaButtons.setLayout(new GridLayout(5,1));
+        pizzaButtons.setLayout(new BoxLayout(pizzaButtons, BoxLayout.Y_AXIS));
 
         JButton addDoughButton = new JButton("Dough");
         JButton addTomatoButton = new JButton("Tomato");
@@ -31,6 +31,7 @@ public class View extends JFrame {
         addOnion.addActionListener(ae -> pizzaPanel.addOnion());
 
         pizzaButtons.add(addDoughButton);
+        pizzaButtons.add(Box.createRigidArea(new Dimension(0, 5)));
         pizzaButtons.add(addTomatoButton);
         pizzaButtons.add(addMozzarellaButton);
         pizzaButtons.add(addOnion);
