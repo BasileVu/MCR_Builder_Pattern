@@ -13,14 +13,20 @@ public class View extends JFrame {
 
         setLayout(new BorderLayout());
 
-        BuilderPanel buildPanel = new BuilderPanel();
-        add(buildPanel, BorderLayout.CENTER);
+        BuilderPanel pizzaPanel = new BuilderPanel();
+        BuilderPanel burgerPanel = new BuilderPanel();
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("Pizza", pizzaPanel);
+        tabbedPane.addTab("Burger", burgerPanel);
+
+        add(tabbedPane, BorderLayout.NORTH);
 
         JButton bakeButton = new JButton("Bake");
 
         // FIXME : only there to test
         bakeButton.addActionListener(ae -> {
-            buildPanel.write(new Pizzaiolo().build().toString());
+            pizzaPanel.write(new Pizzaiolo().build().toString());
         });
 
         JPanel bottom = new JPanel();
