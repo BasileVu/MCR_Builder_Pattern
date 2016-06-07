@@ -18,7 +18,7 @@ public class View extends JFrame {
         tabbedPane.addTab("Pizza", pizzaPanel);
 
         // FIXME tab for burger
-        tabbedPane.addTab("Burger", burgerPanel);
+        tabbedPane.addTab("Hamburger", burgerPanel);
 
         add(tabbedPane, BorderLayout.NORTH);
 

@@ -16,7 +16,7 @@ public class PizzaPanel extends JPanel {
 
         JButton addDoughButton = new JButton("Dough");
         JButton addTomatoButton = new JButton("Tomato");
-        JButton addOnion = new JButton("Onion");
+        JButton addOnionButton = new JButton("Onion");
         JButton addMozzarellaButton = new JButton("Mozzarella");
 
         JPanel pizzaButtons = new JPanel();
@@ -25,12 +25,12 @@ public class PizzaPanel extends JPanel {
         addDoughButton.addActionListener(ae -> pizzaBuildPanel.buildBase());
         addTomatoButton.addActionListener(ae -> pizzaBuildPanel.addTomato());
         addMozzarellaButton.addActionListener(ae -> pizzaBuildPanel.addMozzarella());
-        addOnion.addActionListener(ae -> pizzaBuildPanel.addOnion());
+        addOnionButton.addActionListener(ae -> pizzaBuildPanel.addOnion());
 
         pizzaButtons.add(addDoughButton);
         pizzaButtons.add(addTomatoButton);
         pizzaButtons.add(addMozzarellaButton);
-        pizzaButtons.add(addOnion);
+        pizzaButtons.add(addOnionButton);
 
         JButton bakeButton = new JButton("Bake");
         JPanel bottom = new JPanel();
