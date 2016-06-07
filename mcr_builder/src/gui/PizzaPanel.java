@@ -1,11 +1,5 @@
 package gui;
 
-import builder.PizzaBuilder;
-import exceptions.MissingBaseException;
-import ingredient.Cheese;
-import ingredient.Onion;
-import ingredient.Tomato;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,59 +7,39 @@ import java.awt.*;
  * Created by Basile Vu on 06.06.2016.
  */
 public class PizzaPanel extends JPanel {
-    JLabel label = new JLabel(); // FIXME : only there to test
-    PizzaBuilder builder;
+
+    final PizzaBuildPanel pizzaBuildPanel = new PizzaBuildPanel();
 
     public PizzaPanel() {
-        setPreferredSize(new Dimension(600, 600));
-        add(label);
 
-        builder = new PizzaBuilder();
-    }
+        setLayout(new BorderLayout());
 
-    public void buildBase() {
-        builder.buildBase();
+        JButton addDoughButton = new JButton("Dough");
+        JButton addTomatoButton = new JButton("Tomato");
+        JButton addOnion = new JButton("Onion");
+        JButton addMozzarellaButton = new JButton("Mozzarella");
 
-        try {
-            label.setText(builder.getPizza().toString());
-        } catch(MissingBaseException e) {
-            System.err.println("Missing dough"); // FIXME
-        }
-    }
+        JPanel pizzaButtons = new JPanel();
+        pizzaButtons.setLayout(new GridLayout(10, 1, 0, 10));
 
-    public void addTomato() {
-        builder.addIngredient(new Tomato());
-        try {
-            label.setText(builder.getPizza().toString());
-        } catch (MissingBaseException e) {
-            System.err.println("Missing dough"); // FIXME
-        }
-    }
+        addDoughButton.addActionListener(ae -> pizzaBuildPanel.buildBase());
+        addTomatoButton.addActionListener(ae -> pizzaBuildPanel.addTomato());
+        addMozzarellaButton.addActionListener(ae -> pizzaBuildPanel.addMozzarella());
+        addOnion.addActionListener(ae -> pizzaBuildPanel.addOnion());
 
-    public void addMozzarella() {
-        builder.addIngredient(new Cheese("Mozzarella", 1));
-        try {
-            label.setText(builder.getPizza().toString());
-        } catch (MissingBaseException e) {
-            System.err.println("Missing dough"); // FIXME
-        }
-    }
+        pizzaButtons.add(addDoughButton);
+        pizzaButtons.add(addTomatoButton);
+        pizzaButtons.add(addMozzarellaButton);
+        pizzaButtons.add(addOnion);
 
-    public void addOnion() {
-        builder.addIngredient(new Onion());
-        try {
-            label.setText(builder.getPizza().toString());
-        } catch (MissingBaseException e) {
-            System.err.println("Missing dough"); // FIXME
-        }
-    }
+        JButton bakeButton = new JButton("Bake");
+        JPanel bottom = new JPanel();
+        bottom.setLayout(new GridBagLayout());
+        bottom.add(bakeButton);
+        bakeButton.addActionListener(ae -> pizzaBuildPanel.bake());
 
-    public void bake() {
-        builder.bake();
-        try {
-            label.setText(builder.getPizza().toString());
-        } catch (MissingBaseException e) {
-            System.err.println("Missing dough"); // FIXME
-        }
+        add(pizzaBuildPanel, BorderLayout.CENTER);
+        add(pizzaButtons, BorderLayout.WEST);
+        add(bottom, BorderLayout.SOUTH);
     }
 }
