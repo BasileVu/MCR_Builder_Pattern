@@ -57,7 +57,15 @@ public class BurgerBuilder extends FoodBuilder {
         }
     }
 
-    public Burger getHamburger() throws MissingBaseException, MissingTopException {
+    public Burger getProgress() throws MissingBaseException {
+        if (base == null) {
+            throw new MissingBaseException();
+        }
+
+        return new Burger(base, top, ingredients);
+    }
+
+    public Burger getBurger() throws MissingBaseException, MissingTopException {
         if (base == null) {
             throw new MissingBaseException();
         }
@@ -66,6 +74,6 @@ public class BurgerBuilder extends FoodBuilder {
             throw new MissingTopException();
         }
 
-        return new Burger(base, ingredients);
+        return new Burger(base, top, ingredients);
     }
 }

@@ -33,10 +33,13 @@ public class PizzaPanel extends JPanel {
         pizzaButtons.add(addOnionButton);
 
         JButton bakeButton = new JButton("Bake");
+        JButton getProductButton = new JButton("Get product");
         JPanel bottom = new JPanel();
         bottom.setLayout(new GridBagLayout());
         bottom.add(bakeButton);
+        bottom.add(getProductButton);
         bakeButton.addActionListener(ae -> pizzaBuildPanel.bake());
+        getProductButton.addActionListener(ae -> pizzaBuildPanel.getProduct());
 
         add(pizzaBuildPanel, BorderLayout.CENTER);
         add(pizzaButtons, BorderLayout.WEST);

@@ -17,8 +17,7 @@ public class BurgerPanel extends JPanel {
         JButton addBottomBreadButton = new JButton("Bottom bread");
         JButton addMiddleBreadButton = new JButton("Middle bread");
         JButton addTopBreadButton = new JButton("Top bread");
-        JButton addSmallMeatButton = new JButton("Small meat");
-        JButton addBigMeatButton = new JButton("Big meat");
+        JButton addMeatButton = new JButton("Meat");
         JButton addTomatoButton = new JButton("Tomato");
         JButton addSaladButton = new JButton("Salad");
         JButton addOnionButton = new JButton("Onion");
@@ -40,8 +39,7 @@ public class BurgerPanel extends JPanel {
         addBottomBreadButton.addActionListener(ae -> burgerBuildPanel.addBottomBread());
         addMiddleBreadButton.addActionListener(ae -> burgerBuildPanel.addMiddleBread());
         addTopBreadButton.addActionListener(ae -> burgerBuildPanel.addTopBread());
-        addSmallMeatButton.addActionListener(ae -> burgerBuildPanel.addSmallMeat());
-        addBigMeatButton.addActionListener(ae -> burgerBuildPanel.addBigMeat());
+        addMeatButton.addActionListener(ae -> burgerBuildPanel.addMeat());
         addTomatoButton.addActionListener(ae -> burgerBuildPanel.addTomato());
         addSaladButton.addActionListener(ae -> burgerBuildPanel.addSalad());
         addOnionButton.addActionListener(ae -> burgerBuildPanel.addOnion());
@@ -58,8 +56,7 @@ public class BurgerPanel extends JPanel {
         burgerButtonsLeft.add(addBottomBreadButton);
         burgerButtonsLeft.add(addMiddleBreadButton);
         burgerButtonsLeft.add(addTopBreadButton);
-        burgerButtonsLeft.add(addSmallMeatButton);
-        burgerButtonsLeft.add(addBigMeatButton);
+        burgerButtonsLeft.add(addMeatButton);
         burgerButtonsLeft.add(addTomatoButton);
         burgerButtonsLeft.add(addSaladButton);
         burgerButtonsLeft.add(addOnionButton);
@@ -74,10 +71,14 @@ public class BurgerPanel extends JPanel {
         burgerButtonsRight.add(addMayoButton);
 
         JButton bakeButton = new JButton("Bake");
+        JButton getProductButton = new JButton("Get product");
         JPanel bottom = new JPanel();
         bottom.setLayout(new GridBagLayout());
         bottom.add(bakeButton);
+        bottom.add(getProductButton);
         bakeButton.addActionListener(ae -> burgerBuildPanel.bake());
+        getProductButton.addActionListener(ae -> burgerBuildPanel.getProduct());
+
 
         add(burgerBuildPanel, BorderLayout.CENTER);
         add(burgerButtonsLeft, BorderLayout.WEST);

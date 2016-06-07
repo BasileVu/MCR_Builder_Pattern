@@ -5,6 +5,7 @@ import exceptions.MissingBaseException;
 import ingredient.Cheese;
 import ingredient.Onion;
 import ingredient.Tomato;
+import product.Pizza;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,13 +49,19 @@ public class PizzaBuildPanel extends JPanel {
         label.setText(buildPizza());
     }
 
+    public void getProduct() {
+        label.setText(buildPizza());
+    }
+
     // FIXME
     private String buildPizza() {
         try {
             return builder.getPizza().toString();
-        } catch (MissingBaseException e) {
+        }
+        catch (MissingBaseException e) {
             System.err.println("Missing dough"); // FIXME
         }
+
         return "";
     }
 }
