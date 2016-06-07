@@ -6,7 +6,13 @@ import javax.swing.*;
  * Created by sebbos on 07.06.2016.
  */
 public class BurgerBuildPanel extends JPanel {
-    public void buildBase() {
+    public void addBottomBread() {
+    }
+
+    public void addMiddleBread() {
+    }
+
+    public void addTopBread() {
     }
 
     public void addMayo() {

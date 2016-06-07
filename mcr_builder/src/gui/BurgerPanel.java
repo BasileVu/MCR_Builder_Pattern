@@ -13,7 +13,9 @@ public class BurgerPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        JButton addBreadButton = new JButton("Bread");
+        JButton addBottomBreadButton = new JButton("Bottom bread");
+        JButton addMiddleBreadButton = new JButton("Middle bread");
+        JButton addTopBreadButton = new JButton("Top bread");
         JButton addSmallMeatButton = new JButton("Small meat");
         JButton addBigMeatButton = new JButton("Big meat");
         JButton addTomatoButton = new JButton("Tomato");
@@ -34,7 +36,9 @@ public class BurgerPanel extends JPanel {
         burgerButtonsLeft.setLayout(new GridLayout(10, 1, 0, 10));
         burgerButtonsRight.setLayout(new GridLayout(10, 1, 0, 10));
 
-        addBreadButton.addActionListener(ae -> burgerBuildPanel.buildBase());
+        addBottomBreadButton.addActionListener(ae -> burgerBuildPanel.addBottomBread());
+        addMiddleBreadButton.addActionListener(ae -> burgerBuildPanel.addMiddleBread());
+        addTopBreadButton.addActionListener(ae -> burgerBuildPanel.addTopBread());
         addSmallMeatButton.addActionListener(ae -> burgerBuildPanel.addSmallMeat());
         addBigMeatButton.addActionListener(ae -> burgerBuildPanel.addBigMeat());
         addTomatoButton.addActionListener(ae -> burgerBuildPanel.addTomato());
@@ -50,7 +54,9 @@ public class BurgerPanel extends JPanel {
         addKetchupButton.addActionListener(ae -> burgerBuildPanel.addKetchup());
         addMayoButton.addActionListener(ae -> burgerBuildPanel.addMayo());
 
-        burgerButtonsLeft.add(addBreadButton);
+        burgerButtonsLeft.add(addBottomBreadButton);
+        burgerButtonsLeft.add(addMiddleBreadButton);
+        burgerButtonsLeft.add(addTopBreadButton);
         burgerButtonsLeft.add(addSmallMeatButton);
         burgerButtonsLeft.add(addBigMeatButton);
         burgerButtonsLeft.add(addTomatoButton);
