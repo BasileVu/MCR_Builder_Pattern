@@ -3,16 +3,16 @@ package product;
 import ingredient.BurnableIngredient;
 import ingredient.Ingredient;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * Created by Basile Vu on 24.05.2016.
  */
 public class FoodProduct {
     private final BurnableIngredient base;
-    private final LinkedList<Ingredient> ingredients;
+    private final ArrayList<Ingredient> ingredients;
 
-    public FoodProduct(BurnableIngredient base, LinkedList<Ingredient> ingredients) {
+    public FoodProduct(BurnableIngredient base, ArrayList<Ingredient> ingredients) {
         this.base = base;
         this.ingredients = ingredients;
     }

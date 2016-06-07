@@ -15,7 +15,7 @@ public abstract class BurnableIngredient extends Ingredient {
 
     @Override
     public void bake() {
-        super.bake();
+        super.safeBake();
         if (getBakingDegree() >= burnThreshold) {
             burnDegree++;
         }

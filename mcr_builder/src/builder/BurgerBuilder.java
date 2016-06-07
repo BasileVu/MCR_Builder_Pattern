@@ -1,29 +1,31 @@
 package builder;
 
 import exceptions.MissingBaseException;
-import ingredient.Dough;
+import exceptions.MissingTopException;
+import ingredient.Bread;
 import ingredient.Ingredient;
-import ingredient.MeltableIngredient;
-import product.Pizza;
+import product.Burger;
 
 import java.util.ArrayList;
 
 /**
  * Created by Basile Vu on 24.05.2016.
  */
-public class PizzaBuilder extends FoodBuilder {
-
+public class BurgerBuilder extends FoodBuilder {
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
-    private Dough base;
+    private Bread base, top;
 
     @Override
     public void buildBase() {
-        this.base = new Dough();
+        this.base = new Bread();
     }
 
+    public void buildTop() {
+        this.top = new Bread();
+    }
 
     /**
-     * Adds an ingredient on the Pizza.
+     * Adds an ingredient on the Hamburger.
      *
      * @param ingredient The ingredient to add. If no base is there, the ingredient is lost.
      */
@@ -32,11 +34,10 @@ public class PizzaBuilder extends FoodBuilder {
         if (base != null) {
             ingredients.add(ingredient);
         }
-        // TODO what to do if could not be added (animation on the GUI ?)
     }
 
     /**
-     * Bakes the Pizza.
+     * Bakes the Hamburger.
      *
      * For burnable ingredients, slightly burn them if they are not under a meltable topping.
      * For meltable ingredients, melt them.
@@ -47,26 +48,24 @@ public class PizzaBuilder extends FoodBuilder {
             base.bake();
         }
 
-        boolean meltFound = false;
-        for (int i = ingredients.size() - 1; i >= 0; --i) {
+        if (top != null) {
+            top.bake();
+        }
 
-            if (meltFound) {
-                ingredients.get(i).safeBake();
-            } else {
-                ingredients.get(i).bake();
-            }
-
-            if (ingredients.get(i) instanceof MeltableIngredient) {
-                meltFound = true;
-            }
+        for (Ingredient i: ingredients) {
+            i.safeBake();
         }
     }
 
-    public Pizza getPizza() throws MissingBaseException{
+    public Burger getHamburger() throws MissingBaseException, MissingTopException {
         if (base == null) {
             throw new MissingBaseException();
         }
 
-        return new Pizza(base, ingredients);
+        if (top == null) {
+            throw new MissingTopException();
+        }
+
+        return new Burger(base, ingredients);
     }
 }

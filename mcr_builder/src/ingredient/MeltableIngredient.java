@@ -15,7 +15,7 @@ public  abstract class MeltableIngredient extends Ingredient {
 
     @Override
     public void bake() {
-        super.bake();
+        super.safeBake();
         if (getBakingDegree() >= meltThreshold) {
             meltDegree++;
         }
