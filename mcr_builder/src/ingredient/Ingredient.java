@@ -11,7 +11,9 @@ public abstract class Ingredient {
         this.name = name;
     }
 
-    public void bake() {
+    public abstract void bake();
+
+    public void safeBake() {
         bakingDegree++;
     }
 
