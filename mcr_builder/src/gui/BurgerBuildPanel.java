@@ -49,7 +49,7 @@ public class BurgerBuildPanel extends JPanel {
 
     public void addTomato() {
         builder.addIngredient(new Tomato());
-        label.setText(buildProgressBurger());
+        buildProgressBurger();
     }
 
     public void addSalad() {
@@ -111,7 +111,13 @@ public class BurgerBuildPanel extends JPanel {
         label.setText(buildBurger());
     }
 
-    // FIXME
+    // FIXME draw all ingredients with spacing and resizing
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(new Salad().getImage(), 0, 0, null); // see javadoc for more info on the parameters
+    }
+
     private String buildProgressBurger() {
         try {
             return builder.getProgress().toString();

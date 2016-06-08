@@ -1,14 +1,27 @@
 package ingredient;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Created by Basile Vu on 24.05.2016.
  */
 public abstract class Ingredient {
-    private final String name;
+
+    public static String IMG_FOLDER = "design/burger/exports/images/";
+
+    private BufferedImage image;
     private int bakingDegree = 0;
 
-    Ingredient(String name) {
-        this.name = name;
+    Ingredient(String imageName) {
+        try {
+            image = ImageIO.read(new File(IMG_FOLDER + imageName));
+        } catch (IOException e) {
+            System.err.println("Could not load " +  IMG_FOLDER + imageName);
+        }
     }
 
     public abstract void bake();
@@ -21,8 +34,7 @@ public abstract class Ingredient {
         return bakingDegree;
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public Image getImage() {
+        return image;
     }
 }
