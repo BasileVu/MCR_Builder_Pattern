@@ -100,7 +100,8 @@ public class BurgerBuildPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(new Salad().getImage(), 0, 0, null); // see javadoc for more info on the parameters
+        g.drawImage((new Salad().getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()), Image.SCALE_DEFAULT)),
+                (int) (0.125 * getWidth()), (int) (0.6 * getHeight()), null);
     }
 
     private String buildProgressBurger() {
