@@ -101,7 +101,11 @@ public class BurgerBuildPanel extends JPanel {
         try {
             Image[] images = builder.getProgress().getImages();
             for (int i = 0; i < images.length; ++i) {
-                System.out.println("drawing");
+
+                if (images[i] == null) {
+                    System.out.printf("LOL NULL");
+                }
+
                 g.drawImage((images[i].getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()),
                         Image.SCALE_DEFAULT)), (int) (0.125 * getWidth()), (int) (0.6 * getHeight() - (i * 0.06 * getHeight())), null);
             }

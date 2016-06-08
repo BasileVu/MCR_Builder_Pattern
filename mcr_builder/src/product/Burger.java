@@ -25,14 +25,11 @@ public class Burger {
         }
 
         Image[] res;
-        if (top != null) {
+        if (top == null) {
             res = new Image[ingredients.size() + 1];
         } else {
             res = new Image[ingredients.size() + 2];
-
-            if (ingredients.size() > 0) {
-                res[res.length - 1] = ingredients.get(ingredients.size() - 1).getImage();
-            }
+            res[res.length - 1] = top.getImage();
         }
 
         res[0] = base.getImage();
