@@ -2,7 +2,6 @@ package gui;
 
 import builder.BurgerBuilder;
 import exceptions.MissingBaseException;
-import exceptions.MissingTopException;
 import ingredient.*;
 
 import javax.swing.*;
@@ -13,118 +12,101 @@ import java.awt.*;
  */
 public class BurgerBuildPanel extends JPanel {
 
-    final JLabel label = new JLabel(); // FIXME : only there to test
     final BurgerBuilder builder;
 
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
-        add(label);
         builder = new BurgerBuilder();
     }
 
     public void addBottomBread() {
         builder.buildBase();
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addMiddleBread() {
         builder.addIngredient(new Bread());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addTopBread() {
         builder.buildTop();
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addMayo() {
         builder.addIngredient(new Mayo());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addMeat() {
         builder.addIngredient(new Meat());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addTomato() {
         builder.addIngredient(new Tomato());
-        buildProgressBurger();
+        repaint();
     }
 
     public void addSalad() {
         builder.addIngredient(new Salad());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addOnion() {
         builder.addIngredient(new Onion());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addPickle() {
         builder.addIngredient(new Pickle());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addEgg() {
         builder.addIngredient(new Egg());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addCheddar() {
         builder.addIngredient(new Cheese("cheddar1.png", 1));
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addGruyere() {
         builder.addIngredient(new Cheese("gruyere.png", 1));
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addKetchup() {
         builder.addIngredient(new Ketchup());
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void bake() {
         builder.bake();
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void getProduct() {
-        label.setText(buildBurger());
+        // TODO
     }
 
     // FIXME draw all ingredients with spacing and resizing
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage((new Salad().getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()), Image.SCALE_DEFAULT)),
-                (int) (0.125 * getWidth()), (int) (0.6 * getHeight()), null);
-    }
 
-    private String buildProgressBurger() {
         try {
-            return builder.getProgress().toString();
+            Image[] images = builder.getProgress().getImages();
+            for (int i = 0; i < images.length; ++i) {
+                System.out.println("drawing");
+                g.drawImage((images[i].getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()),
+                        Image.SCALE_DEFAULT)), (int) (0.125 * getWidth()), (int) (0.6 * getHeight() - (i * 0.06 * getHeight())), null);
+            }
+        } catch (MissingBaseException e) {
+            System.err.println("Missing base");
         }
-        catch (MissingBaseException e) {
-            System.err.println("Missing base"); // FIXME
-        }
-
-        return "";
-    }
-
-    private String buildBurger() {
-        try {
-            return builder.getBurger().toString();
-        }
-        catch (MissingBaseException e) {
-            System.err.println("Missing base"); // FIXME
-        } catch (MissingTopException e) {
-            System.err.println("Missing Top"); // FIXME
-        }
-
-        return "";
     }
 }

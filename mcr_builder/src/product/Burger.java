@@ -1,9 +1,9 @@
 package product;
 
 import ingredient.Bread;
-import ingredient.Dough;
 import ingredient.Ingredient;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -19,22 +19,27 @@ public class Burger {
         this.ingredients = ingredients;
     }
 
-    // TODO
-    // for now it prints all the ingredients, but we will probably have to remove this later
-    @Override
-    public String toString() {
-        StringBuilder res = new StringBuilder();
-        res.append(base.toString());
-        for (Ingredient t: ingredients) {
-            res.append(" ");
-            res.append(t.toString());
+    public Image[] getImages() {
+        if (base == null) {
+            return new Image[0];
         }
 
+        Image[] res;
         if (top != null) {
-            res.append(" ");
-            res.append(top.toString());
+            res = new Image[ingredients.size() + 1];
+        } else {
+            res = new Image[ingredients.size() + 2];
+
+            if (ingredients.size() > 0) {
+                res[res.length - 1] = ingredients.get(ingredients.size() - 1).getImage();
+            }
         }
 
-        return res.toString();
+        res[0] = base.getImage();
+        for (int i = 0; i < ingredients.size(); ++i) {
+            res[i+1] = ingredients.get(i).getImage();
+        }
+
+        return res;
     }
 }
