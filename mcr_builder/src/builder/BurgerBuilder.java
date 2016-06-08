@@ -2,7 +2,9 @@ package builder;
 
 import exceptions.MissingBaseException;
 import exceptions.MissingTopException;
-import ingredient.Bread;
+import exceptions.TopAlreadyPlacedException;
+import ingredient.BreadBottom;
+import ingredient.BreadTop;
 import ingredient.Ingredient;
 import product.Burger;
 
@@ -12,32 +14,38 @@ import java.util.ArrayList;
  * Created by Basile Vu on 24.05.2016.
  */
 public class BurgerBuilder extends FoodBuilder {
+    private BreadBottom base;
+    private BreadTop top;
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
-    private Bread base, top;
 
     @Override
     public void buildBase() {
-        this.base = new Bread();
+        this.base = new BreadBottom();
     }
 
-    public void buildTop() {
-        this.top = new Bread();
+    public void buildTop() throws MissingBaseException {
+        if (base == null) {
+            throw new MissingBaseException();
+        }
+        this.top = new BreadTop();
     }
 
     /**
-     * Adds an ingredient on the Hamburger.
+     * Adds an ingredient on the Burger.
      *
      * @param ingredient The ingredient to add. If no base is there, the ingredient is lost.
      */
-    @Override
-    public void addIngredient(Ingredient ingredient) {
-        if (base != null) {
-            ingredients.add(ingredient);
+    public void addIngredient(Ingredient ingredient) throws MissingBaseException, TopAlreadyPlacedException {
+        if (base == null) {
+            throw new MissingBaseException();
+        } else if (top != null) {
+            throw new TopAlreadyPlacedException();
         }
+        ingredients.add(ingredient);
     }
 
     /**
-     * Bakes the Hamburger.
+     * Bakes the Burger.
      *
      * For burnable ingredients, slightly burn them if they are not under a meltable topping.
      * For meltable ingredients, melt them.

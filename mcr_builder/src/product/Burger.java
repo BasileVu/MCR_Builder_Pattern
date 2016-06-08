@@ -1,7 +1,7 @@
 package product;
 
-import ingredient.Bread;
-import ingredient.Dough;
+import ingredient.BreadBottom;
+import ingredient.BreadTop;
 import ingredient.Ingredient;
 
 import java.util.ArrayList;
@@ -10,31 +10,34 @@ import java.util.ArrayList;
  * Created by Basile Vu on 24.05.2016.
  */
 public class Burger {
-    private final Bread base, top;
+    private BreadBottom base;
+    private BreadTop top;
     private final ArrayList<Ingredient> ingredients;
 
-    public Burger(Bread base, Bread top, ArrayList<Ingredient> ingredients) {
+    public Burger(BreadBottom base, BreadTop top, ArrayList<Ingredient> ingredients) {
         this.base = base;
         this.top = top;
         this.ingredients = ingredients;
     }
 
-    // TODO
-    // for now it prints all the ingredients, but we will probably have to remove this later
-    @Override
-    public String toString() {
-        StringBuilder res = new StringBuilder();
-        res.append(base.toString());
-        for (Ingredient t: ingredients) {
-            res.append(" ");
-            res.append(t.toString());
+    public Ingredient[] getIngredients() {
+        if (base == null) {
+            return new Ingredient[0];
         }
 
-        if (top != null) {
-            res.append(" ");
-            res.append(top.toString());
+        Ingredient[] res;
+        if (top == null) {
+            res = new Ingredient[ingredients.size() + 1];
+        } else {
+            res = new Ingredient[ingredients.size() + 2];
+            res[res.length - 1] = top;
         }
 
-        return res.toString();
+        res[0] = base;
+        for (int i = 0; i < ingredients.size(); ++i) {
+            res[i+1] = ingredients.get(i);
+        }
+
+        return res;
     }
 }

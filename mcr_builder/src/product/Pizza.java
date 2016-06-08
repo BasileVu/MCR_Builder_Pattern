@@ -1,9 +1,9 @@
 package product;
 
-import ingredient.BurnableIngredient;
 import ingredient.Dough;
 import ingredient.Ingredient;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -18,16 +18,15 @@ public class Pizza {
         this.ingredients = ingredients;
     }
 
-    // TODO
-    // for now it prints all the ingredients, but we will probably have to remove this later
-    @Override
-    public String toString() {
-        StringBuilder res = new StringBuilder();
-        res.append(base.toString());
-        for (Ingredient t: ingredients) {
-            res.append(" ");
-            res.append(t.toString());
+    public Image[] getImages() {
+        Image[] res = new Image[ingredients.size() + 1];
+        res[res.length-1] = ingredients.get(ingredients.size() - 1).getImage();
+
+        res[0] = base.getImage();
+        for (int i = 0; i < ingredients.size(); ++i) {
+            res[i+1] = ingredients.get(i).getImage();
         }
-        return res.toString();
+
+        return res;
     }
 }

@@ -5,6 +5,6 @@ package ingredient;
  */
 public class Pickle extends BurnableIngredient {
     public Pickle() {
-        super("Pickle", 2);
+        super("pickle.png", 2);
     }
 }

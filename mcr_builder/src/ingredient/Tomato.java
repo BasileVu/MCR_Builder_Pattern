@@ -5,6 +5,6 @@ package ingredient;
  */
 public class Tomato extends BurnableIngredient {
     public Tomato() {
-        super("Tomato", 1);
+        super("tomato_slices.png", 1);
     }
 }

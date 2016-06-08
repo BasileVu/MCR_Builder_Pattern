@@ -2,7 +2,7 @@ package gui;
 
 import builder.BurgerBuilder;
 import exceptions.MissingBaseException;
-import exceptions.MissingTopException;
+import exceptions.TopAlreadyPlacedException;
 import ingredient.*;
 
 import javax.swing.*;
@@ -13,126 +13,118 @@ import java.awt.*;
  */
 public class BurgerBuildPanel extends JPanel {
 
-    final JLabel label = new JLabel(); // FIXME : only there to test
     final BurgerBuilder builder;
 
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
-        add(label);
         builder = new BurgerBuilder();
     }
 
     public void addBottomBread() {
         builder.buildBase();
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void addMiddleBread() {
-        builder.addIngredient(new Bread());
-        label.setText(buildProgressBurger());
+        addIngredient(new BreadMiddle());
     }
 
     public void addTopBread() {
-        builder.buildTop();
-        label.setText(buildProgressBurger());
+        try {
+            builder.buildTop();
+        } catch (MissingBaseException e) {
+            System.err.println("Missing base");
+        }
+        repaint();
     }
 
     public void addMayo() {
-        builder.addIngredient(new Mayo());
-        label.setText(buildProgressBurger());
+        addIngredient(new Mayo());
     }
 
     public void addMeat() {
-        builder.addIngredient(new Meat());
-        label.setText(buildProgressBurger());
+        addIngredient(new Meat());
     }
 
     public void addTomato() {
-        builder.addIngredient(new Tomato());
-        label.setText(buildProgressBurger());
+        addIngredient(new Tomato());
     }
 
     public void addSalad() {
-        builder.addIngredient(new Salad());
-        label.setText(buildProgressBurger());
+        addIngredient(new Salad());
     }
 
     public void addOnion() {
-        builder.addIngredient(new Onion());
-        label.setText(buildProgressBurger());
+        addIngredient(new Onion());
     }
 
     public void addPickle() {
-        builder.addIngredient(new Pickle());
-        label.setText(buildProgressBurger());
-    }
-
-    public void addBacon() {
-        builder.addIngredient(new Bacon());
-        label.setText(buildProgressBurger());
-    }
-
-    public void addMushroom() {
-        builder.addIngredient(new Mushroom());
-        label.setText(buildProgressBurger());
+        addIngredient(new Pickle());
     }
 
     public void addEgg() {
-        builder.addIngredient(new Egg());
-        label.setText(buildProgressBurger());
+        addIngredient(new Egg());
     }
 
     public void addCheddar() {
-        builder.addIngredient(new Cheese("Cheddar", 1));
-        label.setText(buildProgressBurger());
-    }
-
-    public void addGoatCheese() {
-        builder.addIngredient(new Cheese("Goat cheese", 2));
-        label.setText(buildProgressBurger());
+        addIngredient(new Cheese("cheddar1.png", 1));
     }
 
     public void addGruyere() {
-        builder.addIngredient(new Cheese("Gruyere", 1));
-        label.setText(buildProgressBurger());
+        addIngredient(new Cheese("gruyere.png", 1));
     }
 
     public void addKetchup() {
-        builder.addIngredient(new Ketchup());
-        label.setText(buildProgressBurger());
+        addIngredient(new Ketchup());
     }
 
     public void bake() {
         builder.bake();
-        label.setText(buildProgressBurger());
+        repaint();
     }
 
     public void getProduct() {
-        label.setText(buildBurger());
+        // TODO
     }
 
-    // FIXME
-    private String buildProgressBurger() {
+    private void addIngredient(Ingredient i) {
         try {
-            return builder.getProgress().toString();
+            builder.addIngredient(i);
+        } catch (MissingBaseException e) {
+            System.err.println("Missing bottom bread");
+        } catch (TopAlreadyPlacedException e) {
+            System.err.println("Top bread already placed");
         }
-        catch (MissingBaseException e) {
-            System.err.println("Missing base"); // FIXME
-        }
-
-        return "";
+        repaint();
     }
 
-    private String buildBurger() {
-        try {
-            return builder.getBurger().toString();
-        }
-        catch (MissingBaseException e) {
-            System.err.println("Missing base"); // FIXME
-        } catch (MissingTopException e) {
-            System.err.println("Missing Top"); // FIXME
-        }
+    // FIXME draw all ingredients with spacing and resizing
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-        return "";
+        int offset = 0;
+
+        try {
+            Ingredient[] ingredients = builder.getProgress().getIngredients();
+            for (int i = 0; i < ingredients.length; ++i) {
+
+                // FIXME use a wrapper with spacing instead of this
+                if (ingredients[i] instanceof Sauce) {
+
+                } else if (ingredients[i] instanceof Cheese) {
+                    offset += 0.03 * getHeight();
+                } else if (ingredients[i] instanceof BreadTop) {
+                    offset += 0.09 * getHeight();
+                } else {
+                    offset += 0.06 * getHeight();
+                }
+
+                g.drawImage((ingredients[i].getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()),
+                        Image.SCALE_DEFAULT)), (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
+            }
+        } catch (MissingBaseException e) {
+            System.err.println("Missing base");
+        }
     }
 }

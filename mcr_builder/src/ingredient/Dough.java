@@ -5,6 +5,6 @@ package ingredient;
  */
 public class Dough extends BurnableIngredient {
     public Dough() {
-        super("Dough", 3);
+        super("bread_bottom.png", 3);
     }
 }
