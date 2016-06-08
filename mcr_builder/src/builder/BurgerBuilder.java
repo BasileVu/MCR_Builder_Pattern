@@ -2,6 +2,7 @@ package builder;
 
 import exceptions.MissingBaseException;
 import exceptions.MissingTopException;
+import exceptions.TopAlreadyPlacedException;
 import ingredient.BreadBottom;
 import ingredient.BreadTop;
 import ingredient.Ingredient;
@@ -22,7 +23,10 @@ public class BurgerBuilder extends FoodBuilder {
         this.base = new BreadBottom();
     }
 
-    public void buildTop() {
+    public void buildTop() throws MissingBaseException {
+        if (base == null) {
+            throw new MissingBaseException();
+        }
         this.top = new BreadTop();
     }
 
@@ -31,11 +35,13 @@ public class BurgerBuilder extends FoodBuilder {
      *
      * @param ingredient The ingredient to add. If no base is there, the ingredient is lost.
      */
-    @Override
-    public void addIngredient(Ingredient ingredient) {
-        if (base != null) {
-            ingredients.add(ingredient);
+    public void addIngredient(Ingredient ingredient) throws MissingBaseException, TopAlreadyPlacedException {
+        if (base == null) {
+            throw new MissingBaseException();
+        } else if (top != null) {
+            throw new TopAlreadyPlacedException();
         }
+        ingredients.add(ingredient);
     }
 
     /**

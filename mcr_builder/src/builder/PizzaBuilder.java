@@ -27,7 +27,6 @@ public class PizzaBuilder extends FoodBuilder {
      *
      * @param ingredient The ingredient to add. If no base is there, the ingredient is lost.
      */
-    @Override
     public void addIngredient(Ingredient ingredient) {
         if (base != null) {
             ingredients.add(ingredient);

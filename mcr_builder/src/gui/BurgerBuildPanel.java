@@ -2,6 +2,7 @@ package gui;
 
 import builder.BurgerBuilder;
 import exceptions.MissingBaseException;
+import exceptions.TopAlreadyPlacedException;
 import ingredient.*;
 
 import javax.swing.*;
@@ -25,63 +26,56 @@ public class BurgerBuildPanel extends JPanel {
     }
 
     public void addMiddleBread() {
-        builder.addIngredient(new BreadMiddle());
-        repaint();
+        addIngredient(new BreadMiddle());
     }
 
     public void addTopBread() {
-        builder.buildTop();
+        try {
+            builder.buildTop();
+        } catch (MissingBaseException e) {
+            System.err.println("Missing base");
+        }
         repaint();
     }
 
     public void addMayo() {
-        builder.addIngredient(new Mayo());
-        repaint();
+        addIngredient(new Mayo());
     }
 
     public void addMeat() {
-        builder.addIngredient(new Meat());
-        repaint();
+        addIngredient(new Meat());
     }
 
     public void addTomato() {
-        builder.addIngredient(new Tomato());
-        repaint();
+        addIngredient(new Tomato());
     }
 
     public void addSalad() {
-        builder.addIngredient(new Salad());
-        repaint();
+        addIngredient(new Salad());
     }
 
     public void addOnion() {
-        builder.addIngredient(new Onion());
-        repaint();
+        addIngredient(new Onion());
     }
 
     public void addPickle() {
-        builder.addIngredient(new Pickle());
-        repaint();
+        addIngredient(new Pickle());
     }
 
     public void addEgg() {
-        builder.addIngredient(new Egg());
-        repaint();
+        addIngredient(new Egg());
     }
 
     public void addCheddar() {
-        builder.addIngredient(new Cheese("cheddar1.png", 1));
-        repaint();
+        addIngredient(new Cheese("cheddar1.png", 1));
     }
 
     public void addGruyere() {
-        builder.addIngredient(new Cheese("gruyere.png", 1));
-        repaint();
+        addIngredient(new Cheese("gruyere.png", 1));
     }
 
     public void addKetchup() {
-        builder.addIngredient(new Ketchup());
-        repaint();
+        addIngredient(new Ketchup());
     }
 
     public void bake() {
@@ -91,6 +85,17 @@ public class BurgerBuildPanel extends JPanel {
 
     public void getProduct() {
         // TODO
+    }
+
+    private void addIngredient(Ingredient i) {
+        try {
+            builder.addIngredient(i);
+        } catch (MissingBaseException e) {
+            System.err.println("Missing bottom bread");
+        } catch (TopAlreadyPlacedException e) {
+            System.err.println("Top bread already placed");
+        }
+        repaint();
     }
 
     // FIXME draw all ingredients with spacing and resizing
