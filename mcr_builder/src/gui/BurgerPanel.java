@@ -22,11 +22,8 @@ public class BurgerPanel extends JPanel {
         JButton addSaladButton = new JButton("Salad");
         JButton addOnionButton = new JButton("Onion");
         JButton addPickleButton = new JButton("Pickle");
-        JButton addBaconButton = new JButton("Bacon");
-        JButton addMushroomButton = new JButton("Mushroom");
         JButton addEggButton = new JButton("Egg");
         JButton addCheddarButton = new JButton("Cheddar");
-        JButton addGoatCheeseButton = new JButton("Goat cheese");
         JButton addGruyereButton = new JButton("Gruyere");
         JButton addKetchupButton = new JButton("Ketchup");
         JButton addMayoButton = new JButton("Mayo");
@@ -44,11 +41,8 @@ public class BurgerPanel extends JPanel {
         addSaladButton.addActionListener(ae -> burgerBuildPanel.addSalad());
         addOnionButton.addActionListener(ae -> burgerBuildPanel.addOnion());
         addPickleButton.addActionListener(ae -> burgerBuildPanel.addPickle());
-        addBaconButton.addActionListener(ae -> burgerBuildPanel.addBacon());
-        addMushroomButton.addActionListener(ae -> burgerBuildPanel.addMushroom());
         addEggButton.addActionListener(ae -> burgerBuildPanel.addEgg());
         addCheddarButton.addActionListener(ae -> burgerBuildPanel.addCheddar());
-        addGoatCheeseButton.addActionListener(ae -> burgerBuildPanel.addGoatCheese());
         addGruyereButton.addActionListener(ae -> burgerBuildPanel.addGruyere());
         addKetchupButton.addActionListener(ae -> burgerBuildPanel.addKetchup());
         addMayoButton.addActionListener(ae -> burgerBuildPanel.addMayo());
@@ -60,12 +54,9 @@ public class BurgerPanel extends JPanel {
         burgerButtonsLeft.add(addTomatoButton);
         burgerButtonsLeft.add(addSaladButton);
         burgerButtonsLeft.add(addOnionButton);
-        burgerButtonsLeft.add(addPickleButton);
-        burgerButtonsRight.add(addBaconButton);
-        burgerButtonsRight.add(addMushroomButton);
+        burgerButtonsRight.add(addPickleButton);
         burgerButtonsRight.add(addEggButton);
         burgerButtonsRight.add(addCheddarButton);
-        burgerButtonsRight.add(addGoatCheeseButton);
         burgerButtonsRight.add(addGruyereButton);
         burgerButtonsRight.add(addKetchupButton);
         burgerButtonsRight.add(addMayoButton);

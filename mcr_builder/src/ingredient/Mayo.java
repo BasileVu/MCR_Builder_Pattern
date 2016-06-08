@@ -5,7 +5,7 @@ package ingredient;
  */
 public class Mayo extends Ingredient {
     public Mayo() {
-        super("Mayo");
+        super("mayo.png");
     }
 
     @Override

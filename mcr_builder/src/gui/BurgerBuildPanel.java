@@ -67,33 +67,18 @@ public class BurgerBuildPanel extends JPanel {
         label.setText(buildProgressBurger());
     }
 
-    public void addBacon() {
-        builder.addIngredient(new Bacon());
-        label.setText(buildProgressBurger());
-    }
-
-    public void addMushroom() {
-        builder.addIngredient(new Mushroom());
-        label.setText(buildProgressBurger());
-    }
-
     public void addEgg() {
         builder.addIngredient(new Egg());
         label.setText(buildProgressBurger());
     }
 
     public void addCheddar() {
-        builder.addIngredient(new Cheese("Cheddar", 1));
-        label.setText(buildProgressBurger());
-    }
-
-    public void addGoatCheese() {
-        builder.addIngredient(new Cheese("Goat cheese", 2));
+        builder.addIngredient(new Cheese("cheddar1.png", 1));
         label.setText(buildProgressBurger());
     }
 
     public void addGruyere() {
-        builder.addIngredient(new Cheese("Gruyere", 1));
+        builder.addIngredient(new Cheese("gruyere.png", 1));
         label.setText(buildProgressBurger());
     }
 

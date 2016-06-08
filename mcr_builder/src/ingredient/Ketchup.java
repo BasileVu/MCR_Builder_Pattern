@@ -5,7 +5,7 @@ package ingredient;
  */
 public class Ketchup extends Ingredient {
     public Ketchup() {
-        super("Ketchup");
+        super("ketchup.png");
     }
 
     @Override

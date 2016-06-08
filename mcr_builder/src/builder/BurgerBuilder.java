@@ -25,7 +25,7 @@ public class BurgerBuilder extends FoodBuilder {
     }
 
     /**
-     * Adds an ingredient on the Hamburger.
+     * Adds an ingredient on the Burger.
      *
      * @param ingredient The ingredient to add. If no base is there, the ingredient is lost.
      */
@@ -37,7 +37,7 @@ public class BurgerBuilder extends FoodBuilder {
     }
 
     /**
-     * Bakes the Hamburger.
+     * Bakes the Burger.
      *
      * For burnable ingredients, slightly burn them if they are not under a meltable topping.
      * For meltable ingredients, melt them.

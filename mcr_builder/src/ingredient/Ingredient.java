@@ -19,7 +19,8 @@ public abstract class Ingredient {
     Ingredient(String imageName) {
         try {
             image = ImageIO.read(new File(IMG_FOLDER + imageName));
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.err.println("Could not load " +  IMG_FOLDER + imageName);
         }
     }

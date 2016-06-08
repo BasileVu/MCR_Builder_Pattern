@@ -5,6 +5,6 @@ package ingredient;
  */
 public class Egg extends BurnableIngredient {
     public Egg() {
-        super("Egg", 2);
+        super("egg.png", 2);
     }
 }
