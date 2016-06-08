@@ -2,7 +2,8 @@ package builder;
 
 import exceptions.MissingBaseException;
 import exceptions.MissingTopException;
-import ingredient.Bread;
+import ingredient.BreadBottom;
+import ingredient.BreadTop;
 import ingredient.Ingredient;
 import product.Burger;
 
@@ -12,16 +13,17 @@ import java.util.ArrayList;
  * Created by Basile Vu on 24.05.2016.
  */
 public class BurgerBuilder extends FoodBuilder {
+    private BreadBottom base;
+    private BreadTop top;
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
-    private Bread base, top;
 
     @Override
     public void buildBase() {
-        this.base = new Bread();
+        this.base = new BreadBottom();
     }
 
     public void buildTop() {
-        this.top = new Bread();
+        this.top = new BreadTop();
     }
 
     /**

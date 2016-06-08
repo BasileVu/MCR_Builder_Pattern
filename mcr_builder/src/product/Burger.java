@@ -1,40 +1,41 @@
 package product;
 
-import ingredient.Bread;
+import ingredient.BreadBottom;
+import ingredient.BreadTop;
 import ingredient.Ingredient;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
  * Created by Basile Vu on 24.05.2016.
  */
 public class Burger {
-    private final Bread base, top;
+    private BreadBottom base;
+    private BreadTop top;
     private final ArrayList<Ingredient> ingredients;
 
-    public Burger(Bread base, Bread top, ArrayList<Ingredient> ingredients) {
+    public Burger(BreadBottom base, BreadTop top, ArrayList<Ingredient> ingredients) {
         this.base = base;
         this.top = top;
         this.ingredients = ingredients;
     }
 
-    public Image[] getImages() {
+    public Ingredient[] getIngredients() {
         if (base == null) {
-            return new Image[0];
+            return new Ingredient[0];
         }
 
-        Image[] res;
+        Ingredient[] res;
         if (top == null) {
-            res = new Image[ingredients.size() + 1];
+            res = new Ingredient[ingredients.size() + 1];
         } else {
-            res = new Image[ingredients.size() + 2];
-            res[res.length - 1] = top.getImage();
+            res = new Ingredient[ingredients.size() + 2];
+            res[res.length - 1] = top;
         }
 
-        res[0] = base.getImage();
+        res[0] = base;
         for (int i = 0; i < ingredients.size(); ++i) {
-            res[i+1] = ingredients.get(i).getImage();
+            res[i+1] = ingredients.get(i);
         }
 
         return res;

@@ -25,7 +25,7 @@ public class BurgerBuildPanel extends JPanel {
     }
 
     public void addMiddleBread() {
-        builder.addIngredient(new Bread());
+        builder.addIngredient(new BreadMiddle());
         repaint();
     }
 
@@ -98,16 +98,16 @@ public class BurgerBuildPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        int offset = 0;
+
         try {
-            Image[] images = builder.getProgress().getImages();
-            for (int i = 0; i < images.length; ++i) {
+            Ingredient[] ingredients = builder.getProgress().getIngredients();
+            for (int i = 0; i < ingredients.length; ++i) {
 
-                if (images[i] == null) {
-                    System.out.printf("LOL NULL");
-                }
+                offset += ingredients[i] instanceof Sauce ? 0 : 0.06 * getHeight();
 
-                g.drawImage((images[i].getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()),
-                        Image.SCALE_DEFAULT)), (int) (0.125 * getWidth()), (int) (0.6 * getHeight() - (i * 0.06 * getHeight())), null);
+                g.drawImage((ingredients[i].getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()),
+                        Image.SCALE_DEFAULT)), (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
             }
         } catch (MissingBaseException e) {
             System.err.println("Missing base");
