@@ -104,7 +104,16 @@ public class BurgerBuildPanel extends JPanel {
             Ingredient[] ingredients = builder.getProgress().getIngredients();
             for (int i = 0; i < ingredients.length; ++i) {
 
-                offset += ingredients[i] instanceof Sauce ? 0 : 0.06 * getHeight();
+                // FIXME use a wrapper with spacing instead of this
+                if (ingredients[i] instanceof Sauce) {
+
+                } else if (ingredients[i] instanceof Cheese) {
+                    offset += 0.03 * getHeight();
+                } else if (ingredients[i] instanceof BreadTop) {
+                    offset += 0.09 * getHeight();
+                } else {
+                    offset += 0.06 * getHeight();
+                }
 
                 g.drawImage((ingredients[i].getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()),
                         Image.SCALE_DEFAULT)), (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
