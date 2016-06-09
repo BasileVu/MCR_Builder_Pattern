@@ -1,7 +1,4 @@
 package product;
-
-import ingredient.BreadBottom;
-import ingredient.BreadTop;
 import ingredient.Ingredient;
 
 import java.util.ArrayList;
@@ -10,11 +7,11 @@ import java.util.ArrayList;
  * Created by Basile Vu on 24.05.2016.
  */
 public class Burger {
-    private BreadBottom base;
-    private BreadTop top;
+    private Ingredient base;
+    private Ingredient top;
     private final ArrayList<Ingredient> ingredients;
 
-    public Burger(BreadBottom base, BreadTop top, ArrayList<Ingredient> ingredients) {
+    public Burger(Ingredient base, Ingredient top, ArrayList<Ingredient> ingredients) {
         this.base = base;
         this.top = top;
         this.ingredients = ingredients;

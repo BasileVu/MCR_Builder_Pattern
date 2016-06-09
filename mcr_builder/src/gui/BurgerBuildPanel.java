@@ -14,6 +14,7 @@ import java.awt.*;
 public class BurgerBuildPanel extends JPanel {
 
     final BurgerBuilder builder;
+    ImageManager manager = new ImageManager();
 
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
@@ -21,17 +22,21 @@ public class BurgerBuildPanel extends JPanel {
     }
 
     public void addBottomBread() {
-        builder.buildBase();
+        BurnableIngredient base = new BurnableIngredient(3);
+        builder.buildBase(base);
+        manager.registerIngredient(base, ImageManager.BREAD_BOTTOM, 0);
         repaint();
     }
 
     public void addMiddleBread() {
-        addIngredient(new BreadMiddle());
+        addIngredient(new BurnableIngredient(3),ImageManager.BREAD_MIDDLE, 0.05);
     }
 
     public void addTopBread() {
         try {
-            builder.buildTop();
+            BurnableIngredient top = new BurnableIngredient(3);
+            builder.buildTop(top);
+            manager.registerIngredient(top, ImageManager.BREAD_TOP, 0.05);
         } catch (MissingBaseException e) {
             System.err.println("Missing base");
         }
@@ -39,43 +44,43 @@ public class BurgerBuildPanel extends JPanel {
     }
 
     public void addMayo() {
-        addIngredient(new Mayo());
+        addIngredient(new Ingredient(), ImageManager.MAYO, 0);
     }
 
     public void addMeat() {
-        addIngredient(new Meat());
+        addIngredient(new BurnableIngredient(1), ImageManager.MEAT, 0.06);
     }
 
     public void addTomato() {
-        addIngredient(new Tomato());
+        addIngredient(new BurnableIngredient(1), ImageManager.TOMATO, 0.04);
     }
 
     public void addSalad() {
-        addIngredient(new Salad());
+        addIngredient(new BurnableIngredient(1), ImageManager.SALAD, 0.04);
     }
 
     public void addOnion() {
-        addIngredient(new Onion());
+        addIngredient(new BurnableIngredient(1), ImageManager.ONION, 0.02);
     }
 
     public void addPickle() {
-        addIngredient(new Pickle());
+        addIngredient(new BurnableIngredient(1), ImageManager.PICKLE, 0.02);
     }
 
     public void addEgg() {
-        addIngredient(new Egg());
+        addIngredient(new BurnableIngredient(1), ImageManager.EGG, 0.02);
     }
 
     public void addCheddar() {
-        addIngredient(new Cheese("cheddar1.png", 1));
+        addIngredient(new MeltableIngredient(1), ImageManager.CHEDDAR, 0.02);
     }
 
     public void addGruyere() {
-        addIngredient(new Cheese("gruyere.png", 1));
+        addIngredient(new MeltableIngredient(1), ImageManager.GRUYERE, 0.02);
     }
 
     public void addKetchup() {
-        addIngredient(new Ketchup());
+        addIngredient(new Ingredient(), ImageManager.KETCHUP, 0);
     }
 
     public void bake() {
@@ -87,9 +92,14 @@ public class BurgerBuildPanel extends JPanel {
         // TODO
     }
 
-    private void addIngredient(Ingredient i) {
+    private void addIngredient(Ingredient i, String imageName) {
+        addIngredient(i, imageName, ImageManager.DEFAULT_RATIO);
+    }
+
+    private void addIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
         try {
             builder.addIngredient(i);
+            manager.registerIngredient(i, imageName, bottomSpacingRatio);
         } catch (MissingBaseException e) {
             System.err.println("Missing bottom bread");
         } catch (TopAlreadyPlacedException e) {
@@ -105,26 +115,15 @@ public class BurgerBuildPanel extends JPanel {
 
         int offset = 0;
 
-        try {
-            Ingredient[] ingredients = builder.getProgress().getIngredients();
-            for (int i = 0; i < ingredients.length; ++i) {
+        Ingredient[] ingredients = builder.getProgress().getIngredients();
+        for (Ingredient ingr: ingredients) {
 
-                // FIXME use a wrapper with spacing instead of this
-                if (ingredients[i] instanceof Sauce) {
+            ImageContext context = manager.getImageContext(ingr);
+            offset += context.getBottomSpacingRatio() * getHeight();
 
-                } else if (ingredients[i] instanceof Cheese) {
-                    offset += 0.03 * getHeight();
-                } else if (ingredients[i] instanceof BreadTop) {
-                    offset += 0.09 * getHeight();
-                } else {
-                    offset += 0.06 * getHeight();
-                }
-
-                g.drawImage((ingredients[i].getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()),
-                        Image.SCALE_DEFAULT)), (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
-            }
-        } catch (MissingBaseException e) {
-            System.err.println("Missing base");
+            g.drawImage(
+                    (context.getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()), Image.SCALE_DEFAULT)),
+                    (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
         }
     }
 }

@@ -1,7 +1,6 @@
 package builder;
 
 import exceptions.MissingBaseException;
-import ingredient.Dough;
 import ingredient.Ingredient;
 import ingredient.MeltableIngredient;
 import product.Pizza;
@@ -14,11 +13,11 @@ import java.util.ArrayList;
 public class PizzaBuilder extends FoodBuilder {
 
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
-    private Dough base;
+    private Ingredient base;
 
     @Override
     public void buildBase() {
-        this.base = new Dough();
+        this.base = new Ingredient();
     }
 
 

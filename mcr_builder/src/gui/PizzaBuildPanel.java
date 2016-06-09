@@ -2,10 +2,8 @@ package gui;
 
 import builder.PizzaBuilder;
 import exceptions.MissingBaseException;
-import ingredient.Cheese;
-import ingredient.Onion;
-import ingredient.Tomato;
-import product.Pizza;
+import ingredient.BurnableIngredient;
+import ingredient.MeltableIngredient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,17 +28,17 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void addTomato() {
-        builder.addIngredient(new Tomato());
+        builder.addIngredient(new BurnableIngredient(2));
         label.setText(buildPizza());
     }
 
     public void addMozzarella() {
-        builder.addIngredient(new Cheese("Mozzarella", 1));
+        builder.addIngredient(new MeltableIngredient(2));
         label.setText(buildPizza());
     }
 
     public void addOnion() {
-        builder.addIngredient(new Onion());
+        builder.addIngredient(new BurnableIngredient(2));
         label.setText(buildPizza());
     }
 
