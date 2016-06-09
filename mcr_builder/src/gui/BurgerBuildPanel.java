@@ -7,6 +7,8 @@ import ingredient.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 
 /**
  * Created by sebbos on 07.06.2016.
@@ -119,10 +121,14 @@ public class BurgerBuildPanel extends JPanel {
         for (Ingredient ingr: ingredients) {
 
             ImageContext context = manager.getImageContext(ingr);
+            BufferedImage darkerImage = (BufferedImage) context.getImage();
             offset += context.getBottomSpacingRatio() * getHeight();
 
+            RescaleOp op = new RescaleOp(0.9f, 0, null);
+            op.filter(darkerImage, darkerImage);
+
             g.drawImage(
-                    (context.getImage().getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()), Image.SCALE_DEFAULT)),
+                    (darkerImage.getScaledInstance((int) (0.75 * getWidth()), (int) (0.25 * getHeight()), Image.SCALE_DEFAULT)),
                     (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
         }
     }
