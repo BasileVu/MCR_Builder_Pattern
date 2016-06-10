@@ -3,8 +3,6 @@ package builder;
 import exceptions.MissingBaseException;
 import exceptions.MissingTopException;
 import exceptions.TopAlreadyPlacedException;
-import ingredient.BreadBottom;
-import ingredient.BreadTop;
 import ingredient.Ingredient;
 import product.Burger;
 
@@ -14,20 +12,19 @@ import java.util.ArrayList;
  * Created by Basile Vu on 24.05.2016.
  */
 public class BurgerBuilder extends FoodBuilder {
-    private BreadBottom base;
-    private BreadTop top;
+    private Ingredient base;
+    private Ingredient top;
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-    @Override
-    public void buildBase() {
-        this.base = new BreadBottom();
+    public void buildBase(Ingredient base) {
+        this.base = base;
     }
 
-    public void buildTop() throws MissingBaseException {
+    public void buildTop(Ingredient top) throws MissingBaseException {
         if (base == null) {
             throw new MissingBaseException();
         }
-        this.top = new BreadTop();
+        this.top = top;
     }
 
     /**
@@ -65,11 +62,7 @@ public class BurgerBuilder extends FoodBuilder {
         }
     }
 
-    public Burger getProgress() throws MissingBaseException {
-        if (base == null) {
-            throw new MissingBaseException();
-        }
-
+    public Burger getProgress() {
         return new Burger(base, top, ingredients);
     }
 

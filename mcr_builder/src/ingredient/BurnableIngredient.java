@@ -3,13 +3,11 @@ package ingredient;
 /**
  * Created by Basile Vu on 29.05.2016.
  */
-public abstract class BurnableIngredient extends Ingredient {
-
+public class BurnableIngredient extends Ingredient {
     private int burnDegree = 0;
     private int burnThreshold;
 
-    public BurnableIngredient(String name, int burnThreshold) {
-        super(name);
+    public BurnableIngredient(int burnThreshold) {
         this.burnThreshold = burnThreshold;
     }
 
