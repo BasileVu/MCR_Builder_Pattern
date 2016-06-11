@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Basile Vu on 24.05.2016.
  */
-public class BurgerBuilder extends FoodBuilder {
+public class BurgerBuilder {
     private Ingredient base;
     private Ingredient top;
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -47,7 +47,6 @@ public class BurgerBuilder extends FoodBuilder {
      * For burnable ingredients, slightly burn them if they are not under a meltable topping.
      * For meltable ingredients, melt them.
      */
-    @Override
     public void bake() {
         if (base != null) {
             base.bake();
@@ -69,9 +68,7 @@ public class BurgerBuilder extends FoodBuilder {
     public Burger getBurger() throws MissingBaseException, MissingTopException {
         if (base == null) {
             throw new MissingBaseException();
-        }
-
-        if (top == null) {
+        } else if (top == null) {
             throw new MissingTopException();
         }
 

@@ -10,14 +10,13 @@ import java.util.HashMap;
 /**
  * Created by Basile Vu on 09.06.2016.
  */
-public class ImageManager {
+public class BurgerImageManager {
 
     public static String IMG_FOLDER = "design/burger/exports/images/";
 
     public static String BREAD_BOTTOM = "bread_bottom.png";
     public static String BREAD_MIDDLE = "bread_middle.png";
     public static String BREAD_TOP = "bread_top_sesame.png";
-    public static String DOUGH = "dough.png";
 
     public static String TOMATO = "tomato_slices.png";
     public static String MEAT = "meat.png";
@@ -31,14 +30,11 @@ public class ImageManager {
     public static String MAYO = "mayo.png";
     public static String KETCHUP = "ketchup.png";
 
-    public static double DEFAULT_RATIO = 0.06;
-
-
     // FIXME hashcode for ingredients
     HashMap<Ingredient, ImageContext> existingIngredients = new HashMap<>();
 
 
-    public void registerIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
+    public void registerBurgerIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
         try {
             existingIngredients.put(i, new ImageContext(ImageIO.read(new File(IMG_FOLDER + imageName)), bottomSpacingRatio));
         } catch (IOException e) {

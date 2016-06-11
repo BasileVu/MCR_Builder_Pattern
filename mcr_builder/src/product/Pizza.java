@@ -15,4 +15,20 @@ public class Pizza {
         this.base = base;
         this.ingredients = ingredients;
     }
+
+    public Ingredient[] getIngredients() {
+        if (base == null) {
+            return new Ingredient[0];
+        }
+
+        Ingredient[] res = new Ingredient[ingredients.size() + 1];
+
+        res[0] = base;
+
+        for (int i = 0; i < ingredients.size(); ++i) {
+            res[i+1] = ingredients.get(i);
+        }
+
+        return res;
+    }
 }
