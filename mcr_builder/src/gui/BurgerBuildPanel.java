@@ -15,12 +15,15 @@ import java.awt.image.RescaleOp;
  */
 public class BurgerBuildPanel extends JPanel {
 
-    final BurgerBuilder builder;
-    BurgerImageManager manager = new BurgerImageManager();
+    private final BurgerBuilder builder;
+    private BurgerImageManager manager;
+    private RescaleOp op;
 
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         builder = new BurgerBuilder();
+        manager = new BurgerImageManager();
+        op = new RescaleOp(0.9f, 0, null);
     }
 
     public void addBottomBread() {
@@ -43,10 +46,6 @@ public class BurgerBuildPanel extends JPanel {
             System.err.println("Missing base");
         }
         repaint();
-    }
-
-    public void addMayo() {
-        addIngredient(new Ingredient(), BurgerImageManager.MAYO, 0);
     }
 
     public void addMeat() {
@@ -85,8 +84,38 @@ public class BurgerBuildPanel extends JPanel {
         addIngredient(new Ingredient(), BurgerImageManager.KETCHUP, 0);
     }
 
+    public void addMayo() {
+        addIngredient(new Ingredient(), BurgerImageManager.MAYO, 0);
+    }
+
     public void bake() {
         builder.bake();
+
+        Ingredient[] ingredients = builder.getProgress().getIngredients();
+
+        for (Ingredient ing : ingredients) {
+            ImageContext context = manager.getImageContext(ing);
+
+            if (context.getImageName() == BurgerImageManager.CHEDDAR) {
+                // todo : à remplacer par une image de cheddar fondue
+                manager.registerBurgerIngredient(ing, BurgerImageManager.KETCHUP, context.getBottomSpacingRatio());
+            }
+            else if (context.getImageName() == BurgerImageManager.GRUYERE) {
+                // todo : à remplacer par une image de gruyère fondu
+                manager.registerBurgerIngredient(ing, BurgerImageManager.MAYO, context.getBottomSpacingRatio());
+            }
+            else {
+                BufferedImage baseImage = (BufferedImage) context.getImage();
+
+                // on noirçit l'image selon le degré de cuisson
+                for (int i = 0; i < ing.getBakingDegree(); i++) {
+                    op.filter(baseImage, baseImage);
+                }
+
+                manager.registerBurgerIngredient(ing, context);
+            }
+        }
+
         repaint();
     }
 
@@ -113,17 +142,13 @@ public class BurgerBuildPanel extends JPanel {
         int offset = 0;
         Ingredient[] ingredients = builder.getProgress().getIngredients();
 
+        // fixme : je crois qu'on dessine plusieurs fois les même images
         for (Ingredient ing : ingredients) {
-
             ImageContext context = manager.getImageContext(ing);
             BufferedImage baseImage = (BufferedImage) context.getImage();
             offset += context.getBottomSpacingRatio() * getHeight();
 
-            /*RescaleOp op = new RescaleOp(0.9f, 0, null);
-            op.filter(baseImage, baseImage);*/
-
-            g.drawImage(
-                    (baseImage.getScaledInstance((int) (0.75 * getWidth()), (int) (0.3 * getHeight()), Image.SCALE_DEFAULT)),
+            g.drawImage((baseImage.getScaledInstance((int) (0.75 * getWidth()), (int) (0.3 * getHeight()), Image.SCALE_DEFAULT)),
                     (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
         }
     }

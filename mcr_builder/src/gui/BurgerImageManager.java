@@ -36,10 +36,14 @@ public class BurgerImageManager {
 
     public void registerBurgerIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
         try {
-            existingIngredients.put(i, new ImageContext(ImageIO.read(new File(IMG_FOLDER + imageName)), bottomSpacingRatio));
+            existingIngredients.put(i, new ImageContext(ImageIO.read(new File(IMG_FOLDER + imageName)), imageName, bottomSpacingRatio));
         } catch (IOException e) {
             System.out.println(imageName + " could not be loaded");
         }
+    }
+
+    public void registerBurgerIngredient(Ingredient i, ImageContext imageContext) {
+        existingIngredients.put(i, imageContext);
     }
 
     public ImageContext getImageContext(Ingredient i) {
