@@ -3,7 +3,7 @@ package ingredient;
 /**
  * Created by Basile Vu on 29.05.2016.
  */
-public class MeltableIngredient extends Ingredient {
+public abstract class MeltableIngredient extends Ingredient {
 
     private int meltDegree = 0;
     private int meltThreshold;

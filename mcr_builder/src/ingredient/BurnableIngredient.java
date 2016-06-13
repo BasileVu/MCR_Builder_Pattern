@@ -3,7 +3,7 @@ package ingredient;
 /**
  * Created by Basile Vu on 29.05.2016.
  */
-public class BurnableIngredient extends Ingredient {
+public abstract class BurnableIngredient extends Ingredient {
     private int burnDegree = 0;
     private int burnThreshold;
 

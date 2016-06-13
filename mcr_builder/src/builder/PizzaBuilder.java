@@ -1,6 +1,8 @@
 package builder;
 
+import exceptions.BaseAlreadyCreatedException;
 import exceptions.MissingBaseException;
+import ingredient.Dough;
 import ingredient.Ingredient;
 import ingredient.MeltableIngredient;
 import product.Pizza;
@@ -10,27 +12,29 @@ import java.util.ArrayList;
 /**
  * Created by Basile Vu on 24.05.2016.
  */
-public class PizzaBuilder extends FoodBuilder {
+public class PizzaBuilder {
 
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
-    private Ingredient base;
+    private Dough base;
 
-    @Override
-    public void buildBase() {
-        this.base = new Ingredient();
+    public void buildBase() throws BaseAlreadyCreatedException {
+        if (base != null) {
+            throw new BaseAlreadyCreatedException();
+        }
+
+        this.base = new Dough();
     }
-
 
     /**
      * Adds an ingredient on the Pizza.
      *
      * @param ingredient The ingredient to add. If no base is there, the ingredient is lost.
      */
-    public void addIngredient(Ingredient ingredient) {
-        if (base != null) {
-            ingredients.add(ingredient);
+    public void addIngredient(Ingredient ingredient) throws MissingBaseException {
+        if (base == null) {
+            throw new MissingBaseException();
         }
-        // TODO what to do if could not be added (animation on the GUI ?)
+        ingredients.add(ingredient);
     }
 
     /**
@@ -39,7 +43,6 @@ public class PizzaBuilder extends FoodBuilder {
      * For burnable ingredients, slightly burn them if they are not under a meltable topping.
      * For meltable ingredients, melt them.
      */
-    @Override
     public void bake() {
         if (base != null) {
             base.bake();
@@ -60,7 +63,11 @@ public class PizzaBuilder extends FoodBuilder {
         }
     }
 
-    public Pizza getPizza() throws MissingBaseException{
+    public Pizza getProgress() {
+        return new Pizza(base, ingredients);
+    }
+
+    public Pizza getPizza() throws MissingBaseException {
         if (base == null) {
             throw new MissingBaseException();
         }

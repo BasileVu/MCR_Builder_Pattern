@@ -1,9 +1,9 @@
 package builder;
 
-import exceptions.MissingBaseException;
-import exceptions.MissingTopException;
-import exceptions.TopAlreadyPlacedException;
+import exceptions.*;
+import ingredient.BottomBread;
 import ingredient.Ingredient;
+import ingredient.TopBread;
 import product.Burger;
 
 import java.util.ArrayList;
@@ -11,20 +11,28 @@ import java.util.ArrayList;
 /**
  * Created by Basile Vu on 24.05.2016.
  */
-public class BurgerBuilder extends FoodBuilder {
-    private Ingredient base;
-    private Ingredient top;
+public class BurgerBuilder {
+    private BottomBread base;
+    private TopBread top;
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-    public void buildBase(Ingredient base) {
-        this.base = base;
+    public void buildBase() throws BaseAlreadyCreatedException {
+        if (base != null) {
+            throw new BaseAlreadyCreatedException();
+        }
+        base = new BottomBread();
     }
 
-    public void buildTop(Ingredient top) throws MissingBaseException {
+    public void buildTop() throws MissingBaseException, TopAlreadyCreatedException {
         if (base == null) {
             throw new MissingBaseException();
         }
-        this.top = top;
+
+        if (top != null) {
+            throw new TopAlreadyCreatedException();
+        }
+
+        this.top = new TopBread();
     }
 
     /**
@@ -47,7 +55,6 @@ public class BurgerBuilder extends FoodBuilder {
      * For burnable ingredients, slightly burn them if they are not under a meltable topping.
      * For meltable ingredients, melt them.
      */
-    @Override
     public void bake() {
         if (base != null) {
             base.bake();
@@ -69,9 +76,7 @@ public class BurgerBuilder extends FoodBuilder {
     public Burger getBurger() throws MissingBaseException, MissingTopException {
         if (base == null) {
             throw new MissingBaseException();
-        }
-
-        if (top == null) {
+        } else if (top == null) {
             throw new MissingTopException();
         }
 
