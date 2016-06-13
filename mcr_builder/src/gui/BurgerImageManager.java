@@ -1,12 +1,5 @@
 package gui;
 
-import ingredient.Ingredient;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-
 /**
  * Created by Basile Vu on 09.06.2016.
  */
@@ -31,10 +24,10 @@ public class BurgerImageManager {
     public static String KETCHUP = "ketchup.png";
 
     // FIXME hashcode for ingredients
-    HashMap<Ingredient, ImageContext> existingIngredients = new HashMap<>();
+    //HashMap<Ingredient, ImageContext> existingIngredients = new HashMap<>();
 
 
-    public void registerBurgerIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
+    /*public void registerBurgerIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
         try {
             existingIngredients.put(i, new ImageContext(ImageIO.read(new File(IMG_FOLDER + imageName)), imageName, bottomSpacingRatio));
         } catch (IOException e) {
@@ -48,5 +41,5 @@ public class BurgerImageManager {
 
     public ImageContext getImageContext(Ingredient i) {
         return existingIngredients.get(i);
-    }
+    }*/
 }

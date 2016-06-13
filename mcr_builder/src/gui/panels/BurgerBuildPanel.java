@@ -1,13 +1,15 @@
-package gui;
+package gui.panels;
 
 import builder.BurgerBuilder;
 import exceptions.MissingBaseException;
 import exceptions.TopAlreadyPlacedException;
-import ingredient.*;
+import gui.BurgerImageManager;
+import ingredient.BurnableIngredient;
+import ingredient.Ingredient;
+import ingredient.MeltableIngredient;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 
 /**
@@ -29,7 +31,7 @@ public class BurgerBuildPanel extends JPanel {
     public void addBottomBread() {
         BurnableIngredient base = new BurnableIngredient(3);
         builder.buildBase(base);
-        manager.registerBurgerIngredient(base, BurgerImageManager.BREAD_BOTTOM, 0);
+        //manager.registerBurgerIngredient(base, BurgerImageManager.BREAD_BOTTOM, 0);
         repaint();
     }
 
@@ -41,7 +43,7 @@ public class BurgerBuildPanel extends JPanel {
         try {
             BurnableIngredient top = new BurnableIngredient(3);
             builder.buildTop(top);
-            manager.registerBurgerIngredient(top, BurgerImageManager.BREAD_TOP, 0.05);
+            //manager.registerBurgerIngredient(top, BurgerImageManager.BREAD_TOP, 0.05);
         } catch (MissingBaseException e) {
             System.err.println("Missing base");
         }
@@ -91,10 +93,9 @@ public class BurgerBuildPanel extends JPanel {
     public void bake() {
         builder.bake();
 
-        Ingredient[] ingredients = builder.getProgress().getIngredients();
+        /*BurgerIngredient[] ingredients = builder.getProgress().getIngredients();
 
-        for (Ingredient ing : ingredients) {
-            ImageContext context = manager.getImageContext(ing);
+        for (BurgerIngredient ing : ingredients) {
 
             if (context.getImageName() == BurgerImageManager.CHEDDAR) {
                 // todo : à remplacer par une image de cheddar fondue
@@ -114,7 +115,7 @@ public class BurgerBuildPanel extends JPanel {
 
                 manager.registerBurgerIngredient(ing, context);
             }
-        }
+        }*/
 
         repaint();
     }
@@ -126,7 +127,7 @@ public class BurgerBuildPanel extends JPanel {
     private void addIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
         try {
             builder.addIngredient(i);
-            manager.registerBurgerIngredient(i, imageName, bottomSpacingRatio);
+            //manager.registerBurgerIngredient(i, imageName, bottomSpacingRatio);
         } catch (MissingBaseException e) {
             System.err.println("Missing bottom bread");
         } catch (TopAlreadyPlacedException e) {
@@ -143,13 +144,13 @@ public class BurgerBuildPanel extends JPanel {
         Ingredient[] ingredients = builder.getProgress().getIngredients();
 
         // fixme : je crois qu'on dessine plusieurs fois les même images
-        for (Ingredient ing : ingredients) {
+        /*for (Ingredient ing : ingredients) {
             ImageContext context = manager.getImageContext(ing);
             BufferedImage baseImage = (BufferedImage) context.getImage();
             offset += context.getBottomSpacingRatio() * getHeight();
 
             g.drawImage((baseImage.getScaledInstance((int) (0.75 * getWidth()), (int) (0.3 * getHeight()), Image.SCALE_DEFAULT)),
                     (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
-        }
+        }*/
     }
 }

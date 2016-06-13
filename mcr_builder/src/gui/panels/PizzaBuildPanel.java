@@ -1,17 +1,14 @@
-package gui;
+package gui.panels;
 
 import builder.PizzaBuilder;
 import exceptions.MissingBaseException;
+import gui.PizzaImageManager;
 import ingredient.BurnableIngredient;
 import ingredient.Ingredient;
 import ingredient.MeltableIngredient;
-import javafx.scene.image.*;
-import sun.awt.image.BufferedImageGraphicsConfig;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 
 /**
@@ -64,7 +61,7 @@ public class PizzaBuildPanel extends JPanel {
     public void bake() {
         builder.bake();
 
-        Ingredient[] ingredients = builder.getProgress().getIngredients();
+        /*Ingredient[] ingredients = builder.getProgress().getIngredients();
 
         for (Ingredient ing : ingredients) {
             ImageContext context = manager.getImageContext(ing);
@@ -81,7 +78,7 @@ public class PizzaBuildPanel extends JPanel {
 
                 manager.registerPizzaIngredient(ing, context);
             }
-        }
+        }*/
 
         repaint();
     }
@@ -104,7 +101,7 @@ public class PizzaBuildPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Ingredient[] ingredients = builder.getProgress().getIngredients();
+        /*Ingredient[] ingredients = builder.getProgress().getIngredients();
 
         for (Ingredient ing : ingredients) {
             ImageContext context = manager.getImageContext(ing);
@@ -112,6 +109,6 @@ public class PizzaBuildPanel extends JPanel {
 
             g.drawImage((baseImage.getScaledInstance((int) (0.75 * getWidth()), (int) (0.7 * getHeight()), Image.SCALE_DEFAULT)),
                     (int) (0.125 * getWidth()), (int)(0.2 * getHeight()), null);
-        }
+        }*/
     }
 }

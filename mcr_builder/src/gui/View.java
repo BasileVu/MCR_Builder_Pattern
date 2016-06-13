@@ -1,5 +1,8 @@
 package gui;
 
+import gui.panels.BurgerPanel;
+import gui.panels.PizzaPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
