@@ -62,12 +62,15 @@ public class BurgerPanel extends JPanel {
         burgerButtonsRight.add(addMayoButton);
 
         JButton bakeButton = new JButton("Bake");
+        JButton reinitializeButton = new JButton("Reinitialize");
         JButton getProductButton = new JButton("Get product");
         JPanel bottom = new JPanel();
         bottom.setLayout(new GridBagLayout());
         bottom.add(bakeButton);
+        bottom.add(reinitializeButton);
         bottom.add(getProductButton);
         bakeButton.addActionListener(ae -> burgerBuildPanel.bake());
+        reinitializeButton.addActionListener(ae -> burgerBuildPanel.reinitialize());
         getProductButton.addActionListener(ae -> burgerBuildPanel.getProduct());
 
 

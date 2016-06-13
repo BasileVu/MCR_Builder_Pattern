@@ -92,4 +92,10 @@ public class BurgerBuilder extends FoodBuilder {
 
         return new Burger(base, top, ingredients);
     }
+
+    public void reset() {
+        base = null;
+        top = null;
+        ingredients.clear();
+    }
 }

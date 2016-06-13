@@ -89,4 +89,9 @@ public class PizzaBuildPanel extends JPanel {
             i.accept(display);
         }
     }
+
+    public void reinitialize() {
+        builder.reset();
+        repaint();
+    }
 }
