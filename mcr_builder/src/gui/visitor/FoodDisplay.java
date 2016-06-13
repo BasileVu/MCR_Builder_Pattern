@@ -8,19 +8,19 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * Created by Basile Vu on 13.06.2016.
  */
 public interface FoodDisplay {
-    default void visit(Dough t) {
+    default void visit(Dough dough) {
         throw new NotImplementedException();
     }
 
-    default void visit(BottomBread t) {
+    default void visit(BottomBread bottomBread) {
         throw new NotImplementedException();
     }
 
-    default void visit(MiddleBread t) {
+    default void visit(MiddleBread middleBread) {
         throw new NotImplementedException();
     }
 
-    default void visit(TopBread t) {
+    default void visit(TopBread topBread) {
         throw new NotImplementedException();
     }
 
@@ -52,27 +52,27 @@ public interface FoodDisplay {
         throw new NotImplementedException();
     }
 
-    default void visit(Tomato t) {
+    default void visit(Tomato tomato) {
         throw new NotImplementedException();
     }
 
-    default void visit(Ketchup t) {
+    default void visit(Ketchup ketchup) {
         throw new NotImplementedException();
     }
 
-    default void visit(Mayo t) {
+    default void visit(Mayo mayo) {
         throw new NotImplementedException();
     }
 
-    default void visit(Mozzarella t) {
+    default void visit(Mozzarella mozzarella) {
         throw new NotImplementedException();
     }
 
-    default void visit(Basil t) {
+    default void visit(Basil basil) {
         throw new NotImplementedException();
     }
 
-    default void visit(Mushrooms t) {
+    default void visit(Mushrooms mushrooms) {
         throw new NotImplementedException();
     }
 }

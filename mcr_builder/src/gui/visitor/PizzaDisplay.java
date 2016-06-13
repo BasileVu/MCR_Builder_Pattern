@@ -17,7 +17,7 @@ public class PizzaDisplay implements FoodDisplay {
     }
 
     @Override
-    public void visit(Dough t) {
+    public void visit(Dough dough) {
 
     }
 
@@ -27,17 +27,17 @@ public class PizzaDisplay implements FoodDisplay {
     }
 
     @Override
-    public void visit(Mozzarella t) {
+    public void visit(Mozzarella mozzarella) {
 
     }
 
     @Override
-    public void visit(Mushrooms t) {
+    public void visit(Mushrooms mushrooms) {
 
     }
 
     @Override
-    public void visit(Basil t) {
+    public void visit(Basil basil) {
 
     }
 }

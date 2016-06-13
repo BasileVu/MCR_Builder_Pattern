@@ -17,27 +17,27 @@ public class BurgerDisplay implements FoodDisplay {
     }
 
     @Override
-    public void visit(Tomato t) {
+    public void visit(Tomato tomato) {
         // TODO
     }
 
     @Override
-    public void visit(Meat m) {
+    public void visit(Meat meat) {
         // TODO
     }
 
     @Override
-    public void visit(BottomBread t) {
+    public void visit(BottomBread bottomBread) {
 
     }
 
     @Override
-    public void visit(MiddleBread t) {
+    public void visit(MiddleBread middleBread) {
 
     }
 
     @Override
-    public void visit(TopBread t) {
+    public void visit(TopBread topBread) {
 
     }
 
@@ -72,12 +72,12 @@ public class BurgerDisplay implements FoodDisplay {
     }
 
     @Override
-    public void visit(Ketchup t) {
+    public void visit(Ketchup ketchup) {
 
     }
 
     @Override
-    public void visit(Mayo t) {
+    public void visit(Mayo mayo) {
 
     }
 }

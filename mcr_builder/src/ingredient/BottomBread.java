@@ -8,6 +8,6 @@ import gui.visitor.FoodDisplay;
 public class BottomBread extends BurgerBread {
     @Override
     public void accept(FoodDisplay display) {
-
+        display.visit(this);
     }
 }
