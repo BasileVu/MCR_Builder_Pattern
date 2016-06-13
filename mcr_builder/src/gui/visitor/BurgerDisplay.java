@@ -136,9 +136,9 @@ public class BurgerDisplay implements FoodDisplay {
 
     private void drawImage(BufferedImage image, double bottomSpacingRatio) {
         offset += bottomSpacingRatio * panel.getHeight();
-        Image rescaled = image.getScaledInstance((int) (0.75 * panel.getWidth()), (int) (0.3 * panel.getHeight()), Image.SCALE_DEFAULT);
+        Image rescaled = image.getScaledInstance((int) (0.8 * panel.getWidth()), (int) (0.3 * panel.getHeight()), Image.SCALE_DEFAULT);
 
-        graphics.drawImage(rescaled, (int) (0.125 * panel.getWidth()), (int)(0.6 * panel.getHeight()) - offset, null);
+        graphics.drawImage(rescaled, (int) (0.1 * panel.getWidth()), (int)(0.6 * panel.getHeight()) - offset, null);
     }
 
     public void setGraphics(Graphics graphics) {

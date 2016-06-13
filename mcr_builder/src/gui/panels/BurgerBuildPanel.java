@@ -17,13 +17,11 @@ public class BurgerBuildPanel extends JPanel {
 
     private final BurgerBuilder builder;
     private final BurgerDisplay display;
-    private RescaleOp op;
 
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         builder = new BurgerBuilder();
         display = new BurgerDisplay(this);
-        op = new RescaleOp(0.9f, 0, null);
     }
 
     public void addBottomBread() {

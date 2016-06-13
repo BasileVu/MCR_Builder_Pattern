@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ public class PizzaDisplay implements FoodDisplay {
 
     private final JPanel panel;
     private Graphics graphics;
+    private RescaleOp op;
 
     private BufferedImage doughImg;
     private BufferedImage onionImg;
@@ -30,6 +32,7 @@ public class PizzaDisplay implements FoodDisplay {
 
     public PizzaDisplay(JPanel panel) {
         this.panel = panel;
+        op = new RescaleOp(0.9f, 0, null);
         loadImages();
     }
 
@@ -37,7 +40,7 @@ public class PizzaDisplay implements FoodDisplay {
         doughImg = loadImage("dough.png");
         onionImg = loadImage("onion.png");
         mozzarellaImg = loadImage("mozzarella.png");
-        meltedMozzarellaImg = loadImage("mozzarella.png");
+        meltedMozzarellaImg = loadImage("melted_mozzarella.png");
         tomatoSauceImg = loadImage("tomato_sauce.png");
         olivesImg = loadImage("olives.png");
         mushroomsImg = loadImage("mushrooms.png");
@@ -65,7 +68,6 @@ public class PizzaDisplay implements FoodDisplay {
 
     @Override
     public void visit(Mozzarella mozzarella) {
-
         if (mozzarella.isMelted()) {
             drawImage(meltedMozzarellaImg, 0.8);
         } else {
