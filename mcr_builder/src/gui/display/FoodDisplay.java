@@ -1,85 +1,101 @@
-package gui.visitor;
+package gui.display;
 
 import ingredient.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by Basile Vu on 13.06.2016.
  */
-public interface FoodDisplay {
-    default void visit(Dough dough) {
+public abstract class FoodDisplay {
+
+    protected final JPanel panel;
+    protected Graphics graphics;
+
+    public FoodDisplay(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public void setGraphics(Graphics graphics) {
+        this.graphics = graphics;
+    }
+
+
+    public void visit(Dough dough) {
         throw new NotImplementedException();
     }
 
-    default void visit(BottomBread bottomBread) {
+    public void visit(BottomBread bottomBread) {
         throw new NotImplementedException();
     }
 
-    default void visit(MiddleBread middleBread) {
+    public void visit(MiddleBread middleBread) {
         throw new NotImplementedException();
     }
 
-    default void visit(TopBread topBread) {
+    public void visit(TopBread topBread) {
         throw new NotImplementedException();
     }
 
-    default void visit(Meat meat) {
+    public void visit(Meat meat) {
         throw new NotImplementedException();
     }
 
-    default void visit(Salad salad) {
+    public void visit(Salad salad) {
         throw new NotImplementedException();
     }
 
-    default void visit(Onion onion){
+    public void visit(Onion onion){
         throw new NotImplementedException();
     }
 
-    default void visit(Pickle pickle) {
+    public void visit(Pickle pickle) {
         throw new NotImplementedException();
     }
 
-    default void visit(Cheddar cheddar) {
+    public void visit(Cheddar cheddar) {
         throw new NotImplementedException();
     }
 
-    default void visit(Egg egg) {
+    public void visit(Egg egg) {
         throw new NotImplementedException();
     }
 
-    default void visit(Gruyere gruyere) {
+    public void visit(Gruyere gruyere) {
         throw new NotImplementedException();
     }
 
-    default void visit(Tomato tomato) {
+    public void visit(Tomato tomato) {
         throw new NotImplementedException();
     }
 
-    default void visit(Ketchup ketchup) {
+    public void visit(Ketchup ketchup) {
         throw new NotImplementedException();
     }
 
-    default void visit(Mayo mayo) {
+    public void visit(Mayo mayo) {
         throw new NotImplementedException();
     }
 
-    default void visit(Mozzarella mozzarella) {
+    public void visit(Mozzarella mozzarella) {
         throw new NotImplementedException();
     }
 
-    default void visit(Basil basil) {
+    public void visit(Basil basil) {
         throw new NotImplementedException();
     }
 
-    default void visit(TomatoSauce tomatoSauce) {
+    public void visit(TomatoSauce tomatoSauce) {
         throw new NotImplementedException();
     }
 
-    default void visit(Olives olives) {
+    public void visit(Olives olives) {
         throw new NotImplementedException();
     }
 
-    default void visit(Mushrooms mushrooms) {
+    public void visit(Mushrooms mushrooms) {
         throw new NotImplementedException();
     }
 }

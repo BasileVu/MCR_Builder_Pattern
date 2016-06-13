@@ -1,4 +1,4 @@
-package gui.visitor;
+package gui.display;
 
 import ingredient.*;
 
@@ -13,10 +13,7 @@ import java.io.IOException;
 /**
  * Created by Basile Vu on 13.06.2016.
  */
-public class PizzaDisplay implements FoodDisplay {
-
-    private final JPanel panel;
-    private Graphics graphics;
+public class PizzaDisplay extends FoodDisplay {
     private RescaleOp op;
 
     private BufferedImage doughImg;
@@ -31,7 +28,7 @@ public class PizzaDisplay implements FoodDisplay {
     public static String IMG_FOLDER = "design/pizza/exports/images/";
 
     public PizzaDisplay(JPanel panel) {
-        this.panel = panel;
+        super(panel);
         op = new RescaleOp(0.6f, 0, null);
         loadImages();
     }
@@ -110,9 +107,5 @@ public class PizzaDisplay implements FoodDisplay {
                 (panel.getHeight() / 2) - (newHeight / 2),
                 null
         );
-    }
-
-    public void setGraphics(Graphics graphics) {
-        this.graphics = graphics;
     }
 }

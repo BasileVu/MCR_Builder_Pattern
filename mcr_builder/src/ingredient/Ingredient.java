@@ -1,6 +1,6 @@
 package ingredient;
 
-import gui.visitor.FoodDisplay;
+import gui.display.FoodDisplay;
 
 /**
  * Created by Basile Vu on 24.05.2016.

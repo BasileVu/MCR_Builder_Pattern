@@ -2,7 +2,7 @@ package gui.panels;
 
 import builder.BurgerBuilder;
 import exceptions.*;
-import gui.visitor.BurgerDisplay;
+import gui.display.BurgerDisplay;
 import ingredient.*;
 
 import javax.swing.*;

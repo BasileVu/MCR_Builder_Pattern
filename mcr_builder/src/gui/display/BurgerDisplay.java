@@ -1,4 +1,4 @@
-package gui.visitor;
+package gui.display;
 
 import ingredient.*;
 
@@ -12,10 +12,7 @@ import java.io.IOException;
 /**
  * Created by Basile Vu on 13.06.2016.
  */
-public class BurgerDisplay implements FoodDisplay {
-
-    private final JPanel panel;
-    private Graphics graphics;
+public class BurgerDisplay extends FoodDisplay {
 
     private BufferedImage bottomBreadImg;
     private BufferedImage middleBreadImg;
@@ -36,7 +33,7 @@ public class BurgerDisplay implements FoodDisplay {
     private int offset = 0;
 
     public BurgerDisplay(JPanel panel) {
-        this.panel = panel;
+        super(panel);
         loadImages();
     }
 
@@ -139,9 +136,5 @@ public class BurgerDisplay implements FoodDisplay {
         Image rescaled = image.getScaledInstance((int) (0.8 * panel.getWidth()), (int) (0.3 * panel.getHeight()), Image.SCALE_DEFAULT);
 
         graphics.drawImage(rescaled, (int) (0.1 * panel.getWidth()), (int)(0.6 * panel.getHeight()) - offset, null);
-    }
-
-    public void setGraphics(Graphics graphics) {
-        this.graphics = graphics;
     }
 }

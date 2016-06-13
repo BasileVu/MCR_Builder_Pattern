@@ -3,7 +3,7 @@ package gui.panels;
 import builder.PizzaBuilder;
 import exceptions.BaseAlreadyCreatedException;
 import exceptions.MissingBaseException;
-import gui.visitor.PizzaDisplay;
+import gui.display.PizzaDisplay;
 import ingredient.*;
 
 import javax.swing.*;
