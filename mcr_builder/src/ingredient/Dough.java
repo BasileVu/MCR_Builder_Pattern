@@ -1,10 +1,17 @@
 package ingredient;
 
+import gui.visitor.FoodDisplay;
+
 /**
  * Created by Basile Vu on 13.06.2016.
  */
-public abstract class Dough extends BurnableIngredient {
-    public Dough(int burnThreshold) {
-        super(burnThreshold);
+public class Dough extends BurnableIngredient {
+    public Dough() {
+        super(4);
+    }
+
+    @Override
+    public void accept(FoodDisplay display) {
+        display.visit(this);
     }
 }

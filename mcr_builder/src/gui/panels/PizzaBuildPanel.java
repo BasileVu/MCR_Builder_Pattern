@@ -3,9 +3,7 @@ package gui.panels;
 import builder.PizzaBuilder;
 import exceptions.MissingBaseException;
 import gui.PizzaImageManager;
-import ingredient.BurnableIngredient;
-import ingredient.Ingredient;
-import ingredient.MeltableIngredient;
+import ingredient.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,25 +15,22 @@ import java.awt.image.RescaleOp;
 public class PizzaBuildPanel extends JPanel {
 
     private final PizzaBuilder builder;
-    private PizzaImageManager manager;
     private RescaleOp op;
 
     public PizzaBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         builder = new PizzaBuilder();
-        manager = new PizzaImageManager();
         op = new RescaleOp(0.9f, 0, null);
     }
 
     public void buildBase() {
-        BurnableIngredient base = new BurnableIngredient(3);
+        Dough base = new Dough();
         builder.buildBase(base);
-        manager.registerPizzaIngredient(base, PizzaImageManager.DOUGH);
         repaint();
     }
 
     public void addTomato() {
-        addIngredient(new BurnableIngredient(3), PizzaImageManager.TOMATO);
+        addIngredient(new Tomato());
     }
 
     public void addBasil() {
@@ -87,10 +82,9 @@ public class PizzaBuildPanel extends JPanel {
         // TODO
     }
 
-    private void addIngredient(Ingredient i, String imageName) {
+    private void addIngredient(Ingredient i) {
         try {
             builder.addIngredient(i);
-            manager.registerPizzaIngredient(i, imageName);
         } catch (MissingBaseException e) {
             System.err.println("Missing dough");
         }

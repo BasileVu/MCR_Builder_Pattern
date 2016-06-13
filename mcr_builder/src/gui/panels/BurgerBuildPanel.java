@@ -3,7 +3,6 @@ package gui.panels;
 import builder.BurgerBuilder;
 import exceptions.MissingBaseException;
 import exceptions.TopAlreadyPlacedException;
-import gui.BurgerImageManager;
 import gui.visitor.BurgerDisplay;
 import ingredient.*;
 
@@ -28,21 +27,18 @@ public class BurgerBuildPanel extends JPanel {
     }
 
     public void addBottomBread() {
-        BurnableIngredient base = new BurnableIngredient(3);
-        builder.buildBase(base);
+        builder.buildBase();
         //manager.registerBurgerIngredient(base, BurgerImageManager.BREAD_BOTTOM, 0);
         repaint();
     }
 
     public void addMiddleBread() {
-        addIngredient(new BurnableIngredient(3), BurgerImageManager.BREAD_MIDDLE, 0.05);
+        addIngredient(new MiddleBread());
     }
 
     public void addTopBread() {
         try {
-            BurnableIngredient top = new BurnableIngredient(3);
-            builder.buildTop(top);
-            //manager.registerBurgerIngredient(top, BurgerImageManager.BREAD_TOP, 0.05);
+            builder.buildTop();
         } catch (MissingBaseException e) {
             System.err.println("Missing base");
         }
