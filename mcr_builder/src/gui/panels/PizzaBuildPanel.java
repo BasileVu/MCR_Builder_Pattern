@@ -95,6 +95,8 @@ public class PizzaBuildPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        display.setGraphics(g);
+
         for (Ingredient i : builder.getProgress().getIngredients()) {
             i.accept(display);
         }

@@ -22,7 +22,7 @@ public class BurgerBuildPanel extends JPanel {
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         builder = new BurgerBuilder();
-        display = new BurgerDisplay(this, getGraphics());
+        display = new BurgerDisplay(this);
         op = new RescaleOp(0.9f, 0, null);
     }
 
@@ -132,13 +132,11 @@ public class BurgerBuildPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        Ingredient[] ingredients = builder.getProgress().getIngredients();
-
+        
         display.reset();
         display.setGraphics(g);
 
-        for (Ingredient i : ingredients) {
+        for (Ingredient i : builder.getProgress().getIngredients()) {
             i.accept(display);
         }
     }

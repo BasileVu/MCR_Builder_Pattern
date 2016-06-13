@@ -35,9 +35,8 @@ public class BurgerDisplay implements FoodDisplay {
 
     private int offset = 0;
 
-    public BurgerDisplay(JPanel panel, Graphics graphics) {
+    public BurgerDisplay(JPanel panel) {
         this.panel = panel;
-        this.graphics = graphics;
         loadImages();
     }
 
