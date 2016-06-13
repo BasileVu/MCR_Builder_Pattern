@@ -1,7 +1,7 @@
 package exceptions;
 
 /**
- * Created by Basile Vu on 09.06.2016.
+ * Raised when attempting to create the base of the product when it already exists.
  */
 public class BaseAlreadyCreatedException extends Exception {
 }

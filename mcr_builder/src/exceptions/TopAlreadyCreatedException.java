@@ -1,7 +1,7 @@
 package exceptions;
 
 /**
- * Created by Basile Vu on 09.06.2016.
+ * Raised when attempting to create the top of the product when it already exists.
  */
 public class TopAlreadyCreatedException extends Exception {
 }

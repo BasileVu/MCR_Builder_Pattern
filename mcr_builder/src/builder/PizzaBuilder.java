@@ -8,7 +8,7 @@ import ingredient.MeltableIngredient;
 import product.Pizza;
 
 /**
- * Created by Basile Vu on 24.05.2016.
+ * Represents the builder used to build pizzas.
  */
 public class PizzaBuilder extends FoodBuilder {
     private Dough base;

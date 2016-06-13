@@ -7,7 +7,7 @@ import ingredient.TopBread;
 import product.Burger;
 
 /**
- * Created by Basile Vu on 24.05.2016.
+ * Represents the builder used to build burgers.
  */
 public class BurgerBuilder extends FoodBuilder {
     private BottomBread base;
