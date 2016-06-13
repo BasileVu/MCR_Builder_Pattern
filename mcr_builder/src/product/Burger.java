@@ -7,20 +7,19 @@ import ingredient.TopBread;
 import java.util.ArrayList;
 
 /**
- * Created by Basile Vu on 24.05.2016.
+ * Represents a burger.
  */
-public class Burger {
+public class Burger extends FoodProduct {
     private BottomBread base;
     private TopBread top;
-    private final ArrayList<Ingredient> ingredients;
 
     public Burger(BottomBread base, TopBread top, ArrayList<Ingredient> ingredients) {
         this.base = base;
         this.top = top;
-        this.ingredients = ingredients;
+        this.ingredients = init(ingredients);
     }
 
-    public Ingredient[] getIngredients() {
+    private Ingredient[] init(ArrayList<Ingredient> ingredients) {
         if (base == null) {
             return new Ingredient[0];
         }
