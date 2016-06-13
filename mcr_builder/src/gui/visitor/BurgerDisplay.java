@@ -32,11 +32,6 @@ public class BurgerDisplay implements FoodDisplay {
     }
 
     @Override
-    public void visit(Dough t) {
-
-    }
-
-    @Override
     public void visit(MiddleBread t) {
 
     }

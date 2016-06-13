@@ -63,4 +63,16 @@ public interface FoodDisplay {
     default void visit(Mayo t) {
         throw new NotImplementedException();
     }
+
+    default void visit(Mozzarella t) {
+        throw new NotImplementedException();
+    }
+
+    default void visit(Basil t) {
+        throw new NotImplementedException();
+    }
+
+    default void visit(Mushrooms t) {
+        throw new NotImplementedException();
+    }
 }
