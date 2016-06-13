@@ -2,7 +2,6 @@ package gui.panels;
 
 import builder.PizzaBuilder;
 import exceptions.MissingBaseException;
-import gui.PizzaImageManager;
 import ingredient.*;
 
 import javax.swing.*;
