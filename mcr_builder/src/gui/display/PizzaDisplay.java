@@ -59,19 +59,23 @@ public class PizzaDisplay extends FoodDisplay {
         drawImage(baseImg, 1);
 
         if (dough.isBurned()) {
-            op.filter(doughImg, doughImg);
-        }
+            tempImg = op.filter(doughImg, null);
 
-        drawImage(doughImg, 0.7);
+            drawImage(tempImg, 0.7);
+        } else {
+            drawImage(doughImg, 0.7);
+        }
     }
 
     @Override
     public void visit(Onion onion) {
         if (onion.isBurned()) {
-            op.filter(onionImg, onionImg);
-        }
+           tempImg = op.filter(onionImg, null);
 
-        drawImage(onionImg, 0.8);
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(onionImg, 0.8);
+        }
     }
 
     @Override
@@ -91,28 +95,34 @@ public class PizzaDisplay extends FoodDisplay {
     @Override
     public void visit(Olives olives) {
         if (olives.isBurned()) {
-            op.filter(olivesImg, olivesImg);
-        }
+           tempImg = op.filter(olivesImg, olivesImg);
 
-        drawImage(olivesImg, 0.8);
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(olivesImg, 0.8);
+        }
     }
 
     @Override
     public void visit(Mushrooms mushrooms) {
         if (mushrooms.isBurned()) {
-            op.filter(mushroomsImg, mushroomsImg);
-        }
+            tempImg = op.filter(mushroomsImg, null);
 
-        drawImage(mushroomsImg, 0.8);
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(mushroomsImg, 0.8);
+        }
     }
 
     @Override
     public void visit(Basil basil) {
         if (basil.isBurned()) {
-            op.filter(basilImg, basilImg);
-        }
+            tempImg = op.filter(basilImg, null);
 
-        drawImage(basilImg, 0.8);
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(basilImg, 0.8);
+        }
     }
 
     /**

@@ -19,10 +19,11 @@ public abstract class FoodDisplay {
     protected final JPanel panel;
     protected Graphics graphics;
     protected RescaleOp op;
+    protected BufferedImage tempImg;
 
     public FoodDisplay(JPanel panel) {
         this.panel = panel;
-        float[] scales = {0.4f, 0.4f, 0.4f, 1f};
+        float[] scales = {0f, 0f, 0f, 1f};
         float[] offsets = new float[4];
         op = new RescaleOp(scales, offsets, null);
     }

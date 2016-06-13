@@ -77,73 +77,89 @@ public class BurgerDisplay extends FoodDisplay {
     @Override
     public void visit(Tomato tomato) {
         if (tomato.isBurned()) {
-            op.filter(tomatoImg, tomatoImg);
-        }
+            tempImg = op.filter(tomatoImg, null);
 
-        drawImage(tomatoImg, 0.02);
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(tomatoImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Meat meat) {
         if (meat.isBurned()) {
-            op.filter(meatImg, meatImg);
-        }
+            tempImg = op.filter(meatImg, null);
 
-        drawImage(meatImg, 0.06);
+            drawImage(tempImg, 0.06);
+        } else {
+            drawImage(meatImg, 0.06);
+        }
     }
 
     @Override
     public void visit(BottomBread bottomBread) {
         if (bottomBread.isBurned()) {
-            op.filter(bottomBreadImg, bottomBreadImg);
-        }
+            tempImg = op.filter(bottomBreadImg, null);
 
-        drawImage(bottomBreadImg, 0);
+            drawImage(tempImg, 0);
+        } else {
+            drawImage(bottomBreadImg, 0);
+        }
     }
 
     @Override
     public void visit(MiddleBread middleBread) {
         if (middleBread.isBurned()) {
-            op.filter(middleBreadImg, middleBreadImg);
-        }
+            tempImg = op.filter(middleBreadImg, null);
 
-        drawImage(middleBreadImg, 0.05);
+            drawImage(tempImg, 0.05);
+        } else {
+            drawImage(middleBreadImg, 0.05);
+        }
     }
 
     @Override
     public void visit(TopBread topBread) {
         if (topBread.isBurned()) {
-            op.filter(topBreadImg, topBreadImg);
-        }
+            tempImg = op.filter(topBreadImg, null);
 
-        drawImage(topBreadImg, 0.05);
+            drawImage(tempImg, 0.05);
+        } else {
+            drawImage(topBreadImg, 0.05);
+        }
     }
 
     @Override
     public void visit(Salad salad) {
         if (salad.isBurned()) {
-            op.filter(saladImg, saladImg);
-        }
+            tempImg = op.filter(saladImg, null);
 
-        drawImage(saladImg, 0.04);
+            drawImage(tempImg, 0.04);
+        } else {
+            drawImage(saladImg, 0.04);
+        }
     }
 
     @Override
     public void visit(Onion onion) {
         if (onion.isBurned()) {
-            op.filter(onionImg, onionImg);
-        }
+            tempImg = op.filter(onionImg, null);
 
-        drawImage(onionImg, 0.02);
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(onionImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Pickle pickle) {
         if (pickle.isBurned()) {
-            op.filter(pickleImg, pickleImg);
-        }
+            tempImg = op.filter(pickleImg, null);
 
-        drawImage(pickleImg, 0.02);
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(pickleImg, 0.02);
+        }
     }
 
     @Override
@@ -158,10 +174,12 @@ public class BurgerDisplay extends FoodDisplay {
     @Override
     public void visit(Egg egg) {
         if (egg.isBurned()) {
-            op.filter(eggImg, eggImg);
-        }
+            tempImg = op.filter(eggImg, null);
 
-        drawImage(eggImg, 0.02);
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(eggImg, 0.02);
+        }
     }
 
     @Override
