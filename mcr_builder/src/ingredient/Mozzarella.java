@@ -3,9 +3,9 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by sebbos on 13.06.2016.
+ * Represents the mozzarella ingredient.
  */
-public class Mozzarella extends MeltableIngredient {
+public class Mozzarella extends Cheese {
     public Mozzarella() {
         super(1);
     }

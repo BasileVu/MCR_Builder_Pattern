@@ -3,7 +3,7 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Represents the Dough of a pizza.
  */
 public class Dough extends BurnableIngredient {
     public Dough() {

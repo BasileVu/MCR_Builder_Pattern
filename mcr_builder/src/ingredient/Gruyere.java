@@ -3,9 +3,9 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Represents the gruyere ingredient.
  */
-public class Gruyere extends MeltableIngredient {
+public class Gruyere extends Cheese {
     public Gruyere() {
         super(2);
     }

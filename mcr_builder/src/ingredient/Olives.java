@@ -3,7 +3,7 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by sebbos on 13.06.2016.
+ * Represents the olives ingredient.
  */
 public class Olives extends BurnableIngredient {
     public Olives() {

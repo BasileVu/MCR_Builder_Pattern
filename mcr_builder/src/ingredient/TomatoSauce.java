@@ -3,7 +3,7 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by sebbos on 13.06.2016.
+ * Represents the tomato sauce ingredient.
  */
 public class TomatoSauce extends Sauce {
     @Override

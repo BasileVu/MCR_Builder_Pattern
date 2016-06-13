@@ -1,7 +1,7 @@
 package ingredient;
 
 /**
- * Created by Basile Vu on 29.05.2016.
+ * Represents an ingredient that can burn.
  */
 public abstract class BurnableIngredient extends Ingredient {
     private int burnThreshold;
