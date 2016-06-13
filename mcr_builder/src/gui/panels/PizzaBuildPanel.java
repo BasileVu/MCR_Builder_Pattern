@@ -30,7 +30,7 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void addTomato() {
-        addIngredient(new Tomato());
+        addIngredient(new TomatoSauce());
     }
 
     public void addBasil() {
