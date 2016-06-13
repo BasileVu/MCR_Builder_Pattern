@@ -55,38 +55,23 @@ public class PizzaBuildPanel extends JPanel {
 
     public void bake() {
         builder.bake();
-
-        /*Ingredient[] ingredients = builder.getProgress().getIngredients();
-
-        for (Ingredient ing : ingredients) {
-            ImageContext context = manager.getImageContext(ing);
-
-            if (context.getImageName() == PizzaImageManager.MOZZARELLA) {
-                manager.registerPizzaIngredient(ing, PizzaImageManager.MELTED_MOZZARELLA);
-            }
-            else {
-                BufferedImage baseImage = (BufferedImage) context.getImage();
-
-                for (int i = 0; i < ing.getBakingDegree(); i++) {
-                    op.filter(baseImage, baseImage);
-                }
-
-                manager.registerPizzaIngredient(ing, context);
-            }
-        }*/
-
         repaint();
     }
 
     public void getProduct() {
-        // TODO
+        try {
+            builder.getPizza();
+            JOptionPane.showMessageDialog(this, "Pizza ok!");
+        } catch (MissingBaseException e) {
+            JOptionPane.showMessageDialog(this, "The dough is missing.");
+        }
     }
 
     private void addIngredient(Ingredient i) {
         try {
             builder.addIngredient(i);
         } catch (MissingBaseException e) {
-            System.err.println("Missing dough");
+            JOptionPane.showMessageDialog(this, "The dough is missing.");
         }
         repaint();
     }

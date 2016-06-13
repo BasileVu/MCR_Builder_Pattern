@@ -2,6 +2,7 @@ package gui.panels;
 
 import builder.BurgerBuilder;
 import exceptions.MissingBaseException;
+import exceptions.MissingTopException;
 import exceptions.TopAlreadyPlacedException;
 import gui.visitor.BurgerDisplay;
 import ingredient.*;
@@ -37,7 +38,7 @@ public class BurgerBuildPanel extends JPanel {
         try {
             builder.buildTop();
         } catch (MissingBaseException e) {
-            System.err.println("Missing base");
+            JOptionPane.showMessageDialog(this, "The bottom bread is missing.");
         }
         repaint();
     }
@@ -84,45 +85,27 @@ public class BurgerBuildPanel extends JPanel {
 
     public void bake() {
         builder.bake();
-
-        /*Ingredient[] ingredients = builder.getProgress().getIngredients();
-
-        for (Ingredient ing : ingredients) {
-
-            if (context.getImageName() == BurgerImageManager.CHEDDAR) {
-                // todo : à remplacer par une image de cheddar fondue
-                manager.registerBurgerIngredient(ing, BurgerImageManager.KETCHUP, context.getBottomSpacingRatio());
-            }
-            else if (context.getImageName() == BurgerImageManager.GRUYERE) {
-                // todo : à remplacer par une image de gruyère fondu
-                manager.registerBurgerIngredient(ing, BurgerImageManager.MAYO, context.getBottomSpacingRatio());
-            }
-            else {
-                BufferedImage baseImage = (BufferedImage) context.getImage();
-
-                // on noirçit l'image selon le degré de cuisson
-                for (int i = 0; i < ing.getBakingDegree(); i++) {
-                    op.filter(baseImage, baseImage);
-                }
-
-                manager.registerBurgerIngredient(ing, context);
-            }
-        }*/
-
         repaint();
     }
 
     public void getProduct() {
-        // TODO
+        try {
+            builder.getBurger();
+            JOptionPane.showMessageDialog(this, "Burger ok!");
+        } catch (MissingBaseException e) {
+            JOptionPane.showMessageDialog(this, "The bottom bread is missing.");
+        } catch (MissingTopException e) {
+            JOptionPane.showMessageDialog(this, "The top bread is missing.");
+        }
     }
 
     private void addIngredient(Ingredient i) {
         try {
             builder.addIngredient(i);
         } catch (MissingBaseException e) {
-            System.err.println("Missing bottom bread");
+            JOptionPane.showMessageDialog(this, "The bottom bread is missing.");
         } catch (TopAlreadyPlacedException e) {
-            System.err.println("Top bread already placed");
+            JOptionPane.showMessageDialog(this, "Can't add ingredients anymore.");
         }
         repaint();
     }
