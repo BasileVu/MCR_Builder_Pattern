@@ -34,4 +34,5 @@ public class BurgerIngredient {
     double getBottomSpacing() {
         return bottomSpacing;
 
+    }
 }

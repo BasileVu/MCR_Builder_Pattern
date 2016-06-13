@@ -72,6 +72,14 @@ public interface FoodDisplay {
         throw new NotImplementedException();
     }
 
+    default void visit(TomatoSauce tomatoSauce) {
+        throw new NotImplementedException();
+    }
+
+    default void visit(Olives olives) {
+        throw new NotImplementedException();
+    }
+
     default void visit(Mushrooms mushrooms) {
         throw new NotImplementedException();
     }

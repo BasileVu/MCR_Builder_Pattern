@@ -34,23 +34,23 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void addBasil() {
-        addIngredient(new BurnableIngredient(3), PizzaImageManager.BASIL);
+        addIngredient(new Basil());
     }
 
     public void addOlives() {
-        addIngredient(new BurnableIngredient(3), PizzaImageManager.OLIVE);
+        addIngredient(new Olives());
     }
 
     public void addMozzarella() {
-        addIngredient(new MeltableIngredient(1), PizzaImageManager.MOZZARELLA);
+        addIngredient(new Mozzarella());
     }
 
     public void addMushrooms() {
-        addIngredient(new BurnableIngredient(3), PizzaImageManager.MUSHROOMS);
+        addIngredient(new Mushrooms());
     }
 
     public void addOnion() {
-        addIngredient(new BurnableIngredient(3), PizzaImageManager.ONION);
+        addIngredient(new Onion());
     }
 
     public void bake() {

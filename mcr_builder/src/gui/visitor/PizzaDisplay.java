@@ -32,6 +32,16 @@ public class PizzaDisplay implements FoodDisplay {
     }
 
     @Override
+    public void visit(TomatoSauce tomatoSauce) {
+
+    }
+
+    @Override
+    public void visit(Olives olives) {
+
+    }
+
+    @Override
     public void visit(Mushrooms mushrooms) {
 
     }
