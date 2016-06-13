@@ -22,7 +22,9 @@ public abstract class FoodDisplay {
 
     public FoodDisplay(JPanel panel) {
         this.panel = panel;
-        op = new RescaleOp(0.6f, 0, null);
+        float[] scales = {0.4f, 0.4f, 0.4f, 1f};
+        float[] offsets = new float[4];
+        op = new RescaleOp(scales, offsets, null);
     }
 
     /**
