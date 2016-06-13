@@ -32,7 +32,7 @@ public class PizzaDisplay implements FoodDisplay {
 
     public PizzaDisplay(JPanel panel) {
         this.panel = panel;
-        op = new RescaleOp(0.9f, 0, null);
+        op = new RescaleOp(0.6f, 0, null);
         loadImages();
     }
 
@@ -61,9 +61,8 @@ public class PizzaDisplay implements FoodDisplay {
         if (dough.isBurned()) {
             op.filter(doughImg, doughImg);
         }
-        else {
-            drawImage(doughImg, 1);
-        }
+
+        drawImage(doughImg, 1);
     }
 
     @Override
