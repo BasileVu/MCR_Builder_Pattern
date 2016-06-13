@@ -60,45 +60,50 @@ public class PizzaDisplay implements FoodDisplay {
 
     @Override
     public void visit(Onion onion) {
-        drawImage(onionImg, 0.9);
+        drawImage(onionImg, 0.8);
     }
 
     @Override
     public void visit(Mozzarella mozzarella) {
 
         if (mozzarella.isMelted()) {
-            drawImage(meltedMozzarellaImg, 0.9);
+            drawImage(meltedMozzarellaImg, 0.8);
         } else {
-            drawImage(mozzarellaImg, 0.9);
+            drawImage(mozzarellaImg, 0.8);
         }
     }
 
     @Override
     public void visit(TomatoSauce tomatoSauce) {
-        drawImage(tomatoSauceImg, 0.9);
+        drawImage(tomatoSauceImg, 0.8);
     }
 
     @Override
     public void visit(Olives olives) {
-        drawImage(olivesImg, 0.9);
+        drawImage(olivesImg, 0.8);
     }
 
     @Override
     public void visit(Mushrooms mushrooms) {
-        drawImage(mushroomsImg, 0.9);
+        drawImage(mushroomsImg, 0.8);
     }
 
     @Override
     public void visit(Basil basil) {
-        drawImage(basilImg, 0.9);
+        drawImage(basilImg, 0.8);
     }
 
     private void drawImage(BufferedImage image, double scaleRatio) {
-        Image rescaled = image.getScaledInstance(
-                (int) (0.7 * panel.getWidth() * scaleRatio),
-                (int) (0.7 * panel.getHeight() * scaleRatio),
-                Image.SCALE_DEFAULT);
-        graphics.drawImage(rescaled, (int) (0.125 * panel.getWidth()), (int)(0.2 * panel.getHeight()), null);
+
+        int newWidth = (int)(0.7 * panel.getWidth() * scaleRatio);
+        int newHeight = (int)(0.7 * panel.getWidth() * scaleRatio);
+
+        Image rescaled = image.getScaledInstance(newWidth, newHeight, Image.SCALE_DEFAULT);
+        graphics.drawImage(rescaled,
+                (panel.getWidth() / 2) - (newWidth / 2),
+                (panel.getHeight() / 2) - (newHeight / 2),
+                null
+        );
     }
 
     public void setGraphics(Graphics graphics) {
