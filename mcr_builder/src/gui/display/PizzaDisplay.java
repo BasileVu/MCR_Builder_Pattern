@@ -8,7 +8,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Allows ingredients displaying for a pizza. For all ingredients, use their associated images and scaling (how to scale
+ * the image relatively to the base).
  */
 public class PizzaDisplay extends FoodDisplay {
     private RescaleOp op;
@@ -85,6 +86,12 @@ public class PizzaDisplay extends FoodDisplay {
         drawImage(basilImg, 0.8);
     }
 
+    /**
+     * Draws the image with a given scaling ratio.
+     *
+     * @param image The image to draw.
+     * @param scaleRatio The scaling ratio if the image, 1.0 is "standard size" (100%), the size of the dough).
+     */
     private void drawImage(BufferedImage image, double scaleRatio) {
 
         int newWidth = (int)(0.7 * panel.getWidth() * scaleRatio);

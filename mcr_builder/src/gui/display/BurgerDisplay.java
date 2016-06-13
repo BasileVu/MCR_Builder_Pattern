@@ -7,7 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Allows ingredients displaying for a burger. For all ingredients, use their associated images and bottom-spacing (the
+ * space in percentage of height to draw under it).
  */
 public class BurgerDisplay extends FoodDisplay {
 
@@ -125,7 +126,8 @@ public class BurgerDisplay extends FoodDisplay {
     }
 
     /**
-     * Draw the image, with a given spacing under it (relatively to the offset).
+     * Draws the image, relatively to the offset (last drawn position) with a given spacing under it (relatively to the
+     * height).
      *
      * @param image The image to draw.
      * @param bottomSpacingRatio The spacing under it, in height percentage (of the panel). 0.06 -> 6% of height

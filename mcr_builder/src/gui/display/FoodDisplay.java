@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Allows ingredients displaying. The classes extending this class can choose which element the can display and how.
  */
 public abstract class FoodDisplay {
 

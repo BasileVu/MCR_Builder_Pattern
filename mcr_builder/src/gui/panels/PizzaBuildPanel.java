@@ -10,7 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Basile Vu on 07.06.2016.
+ * The panel in which the pizza being built is displayed.
+ * Contains all the methods directly used by the buttons of the PizzaPanel.
  */
 public class PizzaBuildPanel extends JPanel {
 

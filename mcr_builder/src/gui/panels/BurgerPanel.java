@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Basile Vu on 06.06.2016.
+ * Contains the view of the burger being built and the buttons to modify it.
  */
 public class BurgerPanel extends JPanel {
 
