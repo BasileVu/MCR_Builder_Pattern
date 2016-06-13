@@ -1,6 +1,5 @@
 package gui.visitor;
 
-import gui.pizzaIngredient.MiddleBread;
 import ingredient.*;
 
 import javax.imageio.ImageIO;
@@ -78,7 +77,7 @@ public class BurgerDisplay implements FoodDisplay {
 
     @Override
     public void visit(Meat meat) {
-        //drawImage(meatImg, );
+        drawImage(meatImg, 0.06);
     }
 
     @Override
@@ -88,52 +87,52 @@ public class BurgerDisplay implements FoodDisplay {
 
     @Override
     public void visit(MiddleBread middleBread) {
-
+        drawImage(middleBreadImg, 0.05);
     }
 
     @Override
     public void visit(TopBread topBread) {
-
+        drawImage(topBreadImg, 0.05);
     }
 
     @Override
     public void visit(Salad salad) {
-
+        drawImage(saladImg, 0.04);
     }
 
     @Override
     public void visit(Onion onion) {
-
+        drawImage(onionImg, 0.02);
     }
 
     @Override
     public void visit(Pickle pickle) {
-
+        drawImage(pickleImg, 0.02);
     }
 
     @Override
     public void visit(Cheddar cheddar) {
-
+        drawImage(cheddarImg, 0.02);
     }
 
     @Override
     public void visit(Egg egg) {
-
+        drawImage(eggImg, 0.02);
     }
 
     @Override
     public void visit(Gruyere gruyere) {
-
+        drawImage(gruyereImg, 0.02);
     }
 
     @Override
     public void visit(Ketchup ketchup) {
-
+        drawImage(ketchupImg, 0);
     }
 
     @Override
     public void visit(Mayo mayo) {
-
+        drawImage(mayoImg, 0);
     }
 
     private void drawImage(BufferedImage image, double bottomSpacingRatio) {

@@ -134,6 +134,8 @@ public class BurgerBuildPanel extends JPanel {
         super.paintComponent(g);
 
         Ingredient[] ingredients = builder.getProgress().getIngredients();
+
+        display.reset();
         display.setGraphics(g);
 
         for (Ingredient i : ingredients) {
