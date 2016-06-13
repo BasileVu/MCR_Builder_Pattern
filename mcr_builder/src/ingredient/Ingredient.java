@@ -3,15 +3,16 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by Basile Vu on 24.05.2016.
+ * Represents an Ingredient used to build food.
  */
 public abstract class Ingredient {
 
     private int bakingDegree = 0;
 
-    public void bake() {}
-
-    public void safeBake() {
+    /**
+     * Bakes the ingredient.
+     */
+    public void bake() {
         bakingDegree++;
     }
 

@@ -42,10 +42,8 @@ public class PizzaBuilder extends FoodBuilder {
         boolean meltFound = false;
         for (int i = ingredients.size() - 1; i >= 0; --i) {
 
-            if (meltFound) {
-                ingredients.get(i).safeBake();
-            } else {
-                ingredients.get(i).bake();
+            if (!meltFound) {
+               ingredients.get(i).bake();
             }
 
             if (ingredients.get(i) instanceof MeltableIngredient) {
