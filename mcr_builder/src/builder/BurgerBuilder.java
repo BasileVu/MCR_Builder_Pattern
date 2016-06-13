@@ -13,6 +13,11 @@ public class BurgerBuilder extends FoodBuilder {
     private BottomBread base;
     private TopBread top;
 
+    /**
+     * Builds the base of the burger.
+     *
+     * @throws BaseAlreadyCreatedException
+     */
     public void buildBase() throws BaseAlreadyCreatedException {
         if (base != null) {
             throw new BaseAlreadyCreatedException();
@@ -20,6 +25,12 @@ public class BurgerBuilder extends FoodBuilder {
         base = new BottomBread();
     }
 
+    /**
+     * Builds the top of the burger.
+     *
+     * @throws MissingBaseException
+     * @throws TopAlreadyCreatedException
+     */
     public void buildTop() throws MissingBaseException, TopAlreadyCreatedException {
         if (base == null) {
             throw new MissingBaseException();
@@ -32,10 +43,13 @@ public class BurgerBuilder extends FoodBuilder {
         this.top = new TopBread();
     }
 
+
     /**
-     * Adds an ingredient on the Burger.
+     * Adds an ingredient in the burger.
      *
-     * @param ingredient The ingredient to add. If no base is there, the ingredient is lost.
+     * @param ingredient The ingredient to add.
+     * @throws MissingBaseException
+     * @throws TopAlreadyPlacedException
      */
     public void addIngredient(Ingredient ingredient) throws MissingBaseException, TopAlreadyPlacedException {
         if (base == null) {
@@ -61,10 +75,18 @@ public class BurgerBuilder extends FoodBuilder {
         }
     }
 
+    /**
+     * Gets the temporary burger (used for the display in GUI).
+     * @return The temporary burger.
+     */
     public Burger getProgress() {
         return new Burger(base, top, ingredients);
     }
 
+    /**
+     * Gets the burger built (used for the display in GUI).
+     * @return The burger built.
+     */
     public Burger getBurger() throws MissingBaseException, MissingTopException {
         if (base == null) {
             throw new MissingBaseException();
