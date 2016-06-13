@@ -1,7 +1,7 @@
 import gui.View;
 
 /**
- * Created by Basile Vu on 29.05.2016.
+ * Launches the app.
  */
 public class Launcher {
     public static void main(String... args) {

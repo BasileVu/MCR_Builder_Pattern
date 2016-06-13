@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Basile Vu on 06.06.2016.
+ * The main view of the application. Shows the two views of the burger and pizza builders.
  */
 public class View extends JFrame {
     public View() {
