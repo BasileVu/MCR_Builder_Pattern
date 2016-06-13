@@ -2,13 +2,10 @@ package gui.display;
 
 import ingredient.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by Basile Vu on 13.06.2016.
@@ -25,7 +22,7 @@ public class PizzaDisplay extends FoodDisplay {
     private BufferedImage mushroomsImg;
     private BufferedImage basilImg;
 
-    public static String IMG_FOLDER = "design/pizza/exports/images/";
+    public static final String IMG_FOLDER = "design/pizza/exports/images/";
 
     public PizzaDisplay(JPanel panel) {
         super(panel);
@@ -33,24 +30,16 @@ public class PizzaDisplay extends FoodDisplay {
         loadImages();
     }
 
-    private void loadImages() {
-        doughImg = loadImage("dough.png");
-        onionImg = loadImage("onion.png");
-        mozzarellaImg = loadImage("mozzarella.png");
-        meltedMozzarellaImg = loadImage("melted_mozzarella.png");
-        tomatoSauceImg = loadImage("tomato_sauce.png");
-        olivesImg = loadImage("olives.png");
-        mushroomsImg = loadImage("mushrooms.png");
-        basilImg = loadImage("basil.png");
-    }
-
-    private BufferedImage loadImage(String name) {
-        try {
-            return ImageIO.read(new File(IMG_FOLDER + name));
-        } catch (IOException e) {
-            System.err.println(name + " could not be loaded");
-        }
-        return null;
+    @Override
+    protected void loadImages() {
+        doughImg = loadImage(IMG_FOLDER + "dough.png");
+        onionImg = loadImage(IMG_FOLDER + "onion.png");
+        mozzarellaImg = loadImage(IMG_FOLDER + "mozzarella.png");
+        meltedMozzarellaImg = loadImage(IMG_FOLDER + "melted_mozzarella.png");
+        tomatoSauceImg = loadImage(IMG_FOLDER + "tomato_sauce.png");
+        olivesImg = loadImage(IMG_FOLDER + "olives.png");
+        mushroomsImg = loadImage(IMG_FOLDER + "mushrooms.png");
+        basilImg = loadImage(IMG_FOLDER + "basil.png");
     }
 
     @Override

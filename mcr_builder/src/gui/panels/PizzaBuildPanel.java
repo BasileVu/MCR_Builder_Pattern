@@ -8,7 +8,6 @@ import ingredient.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.RescaleOp;
 
 /**
  * Created by Basile Vu on 07.06.2016.
@@ -17,12 +16,10 @@ public class PizzaBuildPanel extends JPanel {
 
     private final PizzaBuilder builder = new PizzaBuilder();
     private final PizzaDisplay display;
-    private RescaleOp op;
 
     public PizzaBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         display = new PizzaDisplay(this);
-        op = new RescaleOp(0.9f, 0, null);
     }
 
     public void buildBase() {

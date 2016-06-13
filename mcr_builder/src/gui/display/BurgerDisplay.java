@@ -2,12 +2,9 @@ package gui.display;
 
 import ingredient.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by Basile Vu on 13.06.2016.
@@ -28,7 +25,7 @@ public class BurgerDisplay extends FoodDisplay {
     private BufferedImage ketchupImg;
     private BufferedImage mayoImg;
 
-    public static String IMG_FOLDER = "design/burger/exports/images/";
+    public static final String IMG_FOLDER = "design/burger/exports/images/";
 
     private int offset = 0;
 
@@ -37,31 +34,27 @@ public class BurgerDisplay extends FoodDisplay {
         loadImages();
     }
 
-    private void loadImages() {
-        bottomBreadImg = loadImage("bread_bottom.png");
-        middleBreadImg = loadImage("bread_middle.png");
-        topBreadImg = loadImage("bread_top_sesame.png");
-        tomatoImg = loadImage("tomato_slices.png");
-        meatImg = loadImage("meat.png");
-        saladImg = loadImage("salad.png");
-        onionImg = loadImage("onion1.png");
-        pickleImg = loadImage("pickle.png");
-        cheddarImg = loadImage("cheddar1.png");
-        gruyereImg = loadImage("gruyere.png");
-        eggImg = loadImage("egg.png");
-        ketchupImg = loadImage("ketchup.png");
-        mayoImg = loadImage("mayo.png");
+    @Override
+    protected void loadImages() {
+        bottomBreadImg = loadImage(IMG_FOLDER + "bread_bottom.png");
+        middleBreadImg = loadImage(IMG_FOLDER + "bread_middle.png");
+        topBreadImg = loadImage(IMG_FOLDER + "bread_top_sesame.png");
+        tomatoImg = loadImage(IMG_FOLDER + "tomato_slices.png");
+        meatImg = loadImage(IMG_FOLDER + "meat.png");
+        saladImg = loadImage(IMG_FOLDER + "salad.png");
+        onionImg = loadImage(IMG_FOLDER + "onion1.png");
+        pickleImg = loadImage(IMG_FOLDER + "pickle.png");
+        cheddarImg = loadImage(IMG_FOLDER + "cheddar1.png");
+        gruyereImg = loadImage(IMG_FOLDER + "gruyere.png");
+        eggImg = loadImage(IMG_FOLDER + "egg.png");
+        ketchupImg = loadImage(IMG_FOLDER + "ketchup.png");
+        mayoImg = loadImage(IMG_FOLDER+ "mayo.png");
     }
 
-    private BufferedImage loadImage(String name) {
-        try {
-            return ImageIO.read(new File(IMG_FOLDER + name));
-        } catch (IOException e) {
-            System.err.println(name + " could not be loaded");
-        }
-        return null;
-    }
-
+    /**
+     * Resets the offset. Must be called EVERYTIME before drawing a burger (otherwise the ingredients will not be drawn
+     * where there should be (drawn too high).
+     */
     public void reset() {
         offset = 0;
     }
@@ -131,6 +124,12 @@ public class BurgerDisplay extends FoodDisplay {
         drawImage(mayoImg, 0);
     }
 
+    /**
+     * Draw the image, with a given spacing under it (relatively to the offset).
+     *
+     * @param image The image to draw.
+     * @param bottomSpacingRatio The spacing under it, in height percentage (of the panel). 0.06 -> 6% of height
+     */
     private void drawImage(BufferedImage image, double bottomSpacingRatio) {
         offset += bottomSpacingRatio * panel.getHeight();
         Image rescaled = image.getScaledInstance((int) (0.8 * panel.getWidth()), (int) (0.3 * panel.getHeight()), Image.SCALE_DEFAULT);
