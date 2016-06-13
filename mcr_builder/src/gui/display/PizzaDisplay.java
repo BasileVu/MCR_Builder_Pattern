@@ -2,18 +2,21 @@ package gui.display;
 
 import ingredient.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Allows ingredients displaying for a pizza. For all ingredients, use their associated images and scaling (how to scale
  * the image relatively to the base).
  */
 public class PizzaDisplay extends FoodDisplay {
-    private RescaleOp op;
 
+    private BufferedImage baseImg;
     private BufferedImage doughImg;
     private BufferedImage onionImg;
     private BufferedImage mozzarellaImg;
@@ -27,33 +30,47 @@ public class PizzaDisplay extends FoodDisplay {
 
     public PizzaDisplay(JPanel panel) {
         super(panel);
-        op = new RescaleOp(0.6f, 0, null);
         loadImages();
     }
 
-    @Override
     protected void loadImages() {
-        doughImg = loadImage(IMG_FOLDER + "dough.png");
-        onionImg = loadImage(IMG_FOLDER + "onion.png");
-        mozzarellaImg = loadImage(IMG_FOLDER + "mozzarella.png");
-        meltedMozzarellaImg = loadImage(IMG_FOLDER + "melted_mozzarella.png");
-        tomatoSauceImg = loadImage(IMG_FOLDER + "tomato_sauce.png");
-        olivesImg = loadImage(IMG_FOLDER + "olives.png");
-        mushroomsImg = loadImage(IMG_FOLDER + "mushrooms.png");
-        basilImg = loadImage(IMG_FOLDER + "basil.png");
+        baseImg = loadImage("base.png");
+        doughImg = loadImage("dough.png");
+        onionImg = loadImage("onion.png");
+        mozzarellaImg = loadImage("mozzarella.png");
+        meltedMozzarellaImg = loadImage("melted_mozzarella.png");
+        tomatoSauceImg = loadImage("tomato_sauce.png");
+        olivesImg = loadImage("olives.png");
+        mushroomsImg = loadImage("mushrooms.png");
+        basilImg = loadImage("basil.png");
+    }
+
+    protected BufferedImage loadImage(String name) {
+        try {
+            return ImageIO.read(new File(IMG_FOLDER + name));
+        } catch (IOException e) {
+            System.err.println(name + " could not be loaded");
+        }
+        return null;
     }
 
     @Override
     public void visit(Dough dough) {
+        drawImage(baseImg, 1);
+
         if (dough.isBurned()) {
             op.filter(doughImg, doughImg);
         }
 
-        drawImage(doughImg, 1);
+        drawImage(doughImg, 0.7);
     }
 
     @Override
     public void visit(Onion onion) {
+        if (onion.isBurned()) {
+            op.filter(onionImg, onionImg);
+        }
+
         drawImage(onionImg, 0.8);
     }
 
@@ -62,27 +79,39 @@ public class PizzaDisplay extends FoodDisplay {
         if (mozzarella.isMelted()) {
             drawImage(meltedMozzarellaImg, 0.8);
         } else {
-            drawImage(mozzarellaImg, 0.8);
+            drawImage(mozzarellaImg, 0.7);
         }
     }
 
     @Override
     public void visit(TomatoSauce tomatoSauce) {
-        drawImage(tomatoSauceImg, 0.8);
+        drawImage(tomatoSauceImg, 0.7);
     }
 
     @Override
     public void visit(Olives olives) {
+        if (olives.isBurned()) {
+            op.filter(olivesImg, olivesImg);
+        }
+
         drawImage(olivesImg, 0.8);
     }
 
     @Override
     public void visit(Mushrooms mushrooms) {
+        if (mushrooms.isBurned()) {
+            op.filter(mushroomsImg, mushroomsImg);
+        }
+
         drawImage(mushroomsImg, 0.8);
     }
 
     @Override
     public void visit(Basil basil) {
+        if (basil.isBurned()) {
+            op.filter(basilImg, basilImg);
+        }
+
         drawImage(basilImg, 0.8);
     }
 

@@ -2,9 +2,12 @@ package gui.display;
 
 import ingredient.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Allows ingredients displaying for a burger. For all ingredients, use their associated images and bottom-spacing (the
@@ -21,7 +24,9 @@ public class BurgerDisplay extends FoodDisplay {
     private BufferedImage onionImg;
     private BufferedImage pickleImg;
     private BufferedImage cheddarImg;
+    private BufferedImage meltedCheddarImg;
     private BufferedImage gruyereImg;
+    private BufferedImage meltedGruyereImg;
     private BufferedImage eggImg;
     private BufferedImage ketchupImg;
     private BufferedImage mayoImg;
@@ -35,6 +40,10 @@ public class BurgerDisplay extends FoodDisplay {
         loadImages();
     }
 
+    /**
+     * Resets the offset. Must be called EVERYTIME before drawing a burger (otherwise the ingredients will not be drawn
+     * where there should be (drawn too high).
+     */
     @Override
     protected void loadImages() {
         bottomBreadImg = loadImage(IMG_FOLDER + "bread_bottom.png");
@@ -52,67 +61,116 @@ public class BurgerDisplay extends FoodDisplay {
         mayoImg = loadImage(IMG_FOLDER+ "mayo.png");
     }
 
-    /**
-     * Resets the offset. Must be called EVERYTIME before drawing a burger (otherwise the ingredients will not be drawn
-     * where there should be (drawn too high).
-     */
+    protected BufferedImage loadImage(String name) {
+        try {
+            return ImageIO.read(new File(name));
+        } catch (IOException e) {
+            System.err.println(name + " could not be loaded");
+        }
+        return null;
+    }
+
     public void reset() {
         offset = 0;
     }
 
     @Override
     public void visit(Tomato tomato) {
+        if (tomato.isBurned()) {
+            op.filter(tomatoImg, tomatoImg);
+        }
+
         drawImage(tomatoImg, 0.02);
     }
 
     @Override
     public void visit(Meat meat) {
+        if (meat.isBurned()) {
+            op.filter(meatImg, meatImg);
+        }
+
         drawImage(meatImg, 0.06);
     }
 
     @Override
     public void visit(BottomBread bottomBread) {
+        if (bottomBread.isBurned()) {
+            op.filter(bottomBreadImg, bottomBreadImg);
+        }
+
         drawImage(bottomBreadImg, 0);
     }
 
     @Override
     public void visit(MiddleBread middleBread) {
+        if (middleBread.isBurned()) {
+            op.filter(middleBreadImg, middleBreadImg);
+        }
+
         drawImage(middleBreadImg, 0.05);
     }
 
     @Override
     public void visit(TopBread topBread) {
+        if (topBread.isBurned()) {
+            op.filter(topBreadImg, topBreadImg);
+        }
+
         drawImage(topBreadImg, 0.05);
     }
 
     @Override
     public void visit(Salad salad) {
+        if (salad.isBurned()) {
+            op.filter(saladImg, saladImg);
+        }
+
         drawImage(saladImg, 0.04);
     }
 
     @Override
     public void visit(Onion onion) {
+        if (onion.isBurned()) {
+            op.filter(onionImg, onionImg);
+        }
+
         drawImage(onionImg, 0.02);
     }
 
     @Override
     public void visit(Pickle pickle) {
+        if (pickle.isBurned()) {
+            op.filter(pickleImg, pickleImg);
+        }
+
         drawImage(pickleImg, 0.02);
     }
 
     @Override
     public void visit(Cheddar cheddar) {
-        drawImage(cheddarImg, 0.02);
+        if (cheddar.isMelted()) {
+            drawImage(meltedCheddarImg, 0.02);
+        } else {
+            drawImage(cheddarImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Egg egg) {
+        if (egg.isBurned()) {
+            op.filter(eggImg, eggImg);
+        }
+
         drawImage(eggImg, 0.02);
     }
 
     @Override
     public void visit(Gruyere gruyere) {
-        drawImage(gruyereImg, 0.02);
+        if (gruyere.isMelted()) {
+            drawImage(meltedGruyereImg, 0.02);
+        } else {
+            drawImage(gruyereImg, 0.02);
+        }
     }
 
     @Override

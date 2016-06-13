@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,9 +18,11 @@ public abstract class FoodDisplay {
 
     protected final JPanel panel;
     protected Graphics graphics;
+    protected RescaleOp op;
 
     public FoodDisplay(JPanel panel) {
         this.panel = panel;
+        op = new RescaleOp(0.6f, 0, null);
     }
 
     /**
