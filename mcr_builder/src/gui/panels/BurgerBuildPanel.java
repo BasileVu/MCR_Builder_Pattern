@@ -1,15 +1,12 @@
 package gui.panels;
 
 import builder.BurgerBuilder;
-import exceptions.MissingBaseException;
-import exceptions.MissingTopException;
-import exceptions.TopAlreadyPlacedException;
+import exceptions.*;
 import gui.visitor.BurgerDisplay;
 import ingredient.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.RescaleOp;
 
 /**
  * Created by sebbos on 07.06.2016.
@@ -26,7 +23,11 @@ public class BurgerBuildPanel extends JPanel {
     }
 
     public void addBottomBread() {
-        builder.buildBase();
+        try {
+            builder.buildBase();
+        } catch (BaseAlreadyCreatedException e) {
+            JOptionPane.showMessageDialog(this, "The bottom bread is already present.");
+        }
         repaint();
     }
 
@@ -39,6 +40,8 @@ public class BurgerBuildPanel extends JPanel {
             builder.buildTop();
         } catch (MissingBaseException e) {
             JOptionPane.showMessageDialog(this, "The bottom bread is missing.");
+        } catch (TopAlreadyCreatedException e) {
+            JOptionPane.showMessageDialog(this, "The top bread is already present.");
         }
         repaint();
     }

@@ -1,5 +1,6 @@
 package builder;
 
+import exceptions.BaseAlreadyCreatedException;
 import exceptions.MissingBaseException;
 import ingredient.Dough;
 import ingredient.Ingredient;
@@ -16,7 +17,11 @@ public class PizzaBuilder {
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
     private Dough base;
 
-    public void buildBase() {
+    public void buildBase() throws BaseAlreadyCreatedException {
+        if (base != null) {
+            throw new BaseAlreadyCreatedException();
+        }
+
         this.base = new Dough();
     }
 
@@ -27,7 +32,6 @@ public class PizzaBuilder {
      */
     public void addIngredient(Ingredient ingredient) throws MissingBaseException {
         if (base == null) {
-            // TODO what to do if could not be added (animation on the GUI ?)
             throw new MissingBaseException();
         }
         ingredients.add(ingredient);

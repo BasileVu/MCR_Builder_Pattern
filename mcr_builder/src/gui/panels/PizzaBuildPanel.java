@@ -1,6 +1,7 @@
 package gui.panels;
 
 import builder.PizzaBuilder;
+import exceptions.BaseAlreadyCreatedException;
 import exceptions.MissingBaseException;
 import gui.visitor.PizzaDisplay;
 import ingredient.*;
@@ -25,7 +26,11 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void buildBase() {
-        builder.buildBase();
+        try {
+            builder.buildBase();
+        } catch (BaseAlreadyCreatedException e) {
+            JOptionPane.showMessageDialog(this, "The dough is already present.");
+        }
         repaint();
     }
 

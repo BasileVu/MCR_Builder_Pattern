@@ -1,8 +1,6 @@
 package builder;
 
-import exceptions.MissingBaseException;
-import exceptions.MissingTopException;
-import exceptions.TopAlreadyPlacedException;
+import exceptions.*;
 import ingredient.BottomBread;
 import ingredient.Ingredient;
 import ingredient.TopBread;
@@ -18,14 +16,22 @@ public class BurgerBuilder {
     private TopBread top;
     private final ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-    public void buildBase() {
+    public void buildBase() throws BaseAlreadyCreatedException {
+        if (base != null) {
+            throw new BaseAlreadyCreatedException();
+        }
         base = new BottomBread();
     }
 
-    public void buildTop() throws MissingBaseException {
+    public void buildTop() throws MissingBaseException, TopAlreadyCreatedException {
         if (base == null) {
             throw new MissingBaseException();
         }
+
+        if (top != null) {
+            throw new TopAlreadyCreatedException();
+        }
+
         this.top = new TopBread();
     }
 

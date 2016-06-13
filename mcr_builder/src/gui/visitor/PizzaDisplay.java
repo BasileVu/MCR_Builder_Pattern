@@ -58,7 +58,12 @@ public class PizzaDisplay implements FoodDisplay {
 
     @Override
     public void visit(Dough dough) {
-        drawImage(doughImg, 1);
+        if (dough.isBurned()) {
+            op.filter(doughImg, doughImg);
+        }
+        else {
+            drawImage(doughImg, 1);
+        }
     }
 
     @Override
