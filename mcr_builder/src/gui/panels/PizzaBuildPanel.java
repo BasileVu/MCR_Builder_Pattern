@@ -41,7 +41,7 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void addOlives() {
-        addIngredient(new Olives());
+        addIngredient(new Olive());
     }
 
     public void addMozzarella() {
@@ -49,7 +49,7 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void addMushrooms() {
-        addIngredient(new Mushrooms());
+        addIngredient(new Mushroom());
     }
 
     public void addOnion() {

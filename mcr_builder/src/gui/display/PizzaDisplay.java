@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,8 +21,8 @@ public class PizzaDisplay extends FoodDisplay {
     private BufferedImage mozzarellaImg;
     private BufferedImage meltedMozzarellaImg;
     private BufferedImage tomatoSauceImg;
-    private BufferedImage olivesImg;
-    private BufferedImage mushroomsImg;
+    private BufferedImage oliveImg;
+    private BufferedImage mushroomImg;
     private BufferedImage basilImg;
 
     public static final String IMG_FOLDER = "design/pizza/exports/images/";
@@ -40,8 +39,8 @@ public class PizzaDisplay extends FoodDisplay {
         mozzarellaImg = loadImage("mozzarella.png");
         meltedMozzarellaImg = loadImage("melted_mozzarella.png");
         tomatoSauceImg = loadImage("tomato_sauce.png");
-        olivesImg = loadImage("olives.png");
-        mushroomsImg = loadImage("mushrooms.png");
+        oliveImg = loadImage("olive.png");
+        mushroomImg = loadImage("mushroom.png");
         basilImg = loadImage("basil.png");
     }
 
@@ -93,24 +92,24 @@ public class PizzaDisplay extends FoodDisplay {
     }
 
     @Override
-    public void visit(Olives olives) {
-        if (olives.isBurned()) {
-           tempImg = op.filter(olivesImg, olivesImg);
+    public void visit(Olive olive) {
+        if (olive.isBurned()) {
+           tempImg = op.filter(oliveImg, oliveImg);
 
             drawImage(tempImg, 0.8);
         } else {
-            drawImage(olivesImg, 0.8);
+            drawImage(oliveImg, 0.8);
         }
     }
 
     @Override
-    public void visit(Mushrooms mushrooms) {
-        if (mushrooms.isBurned()) {
-            tempImg = op.filter(mushroomsImg, null);
+    public void visit(Mushroom mushroom) {
+        if (mushroom.isBurned()) {
+            tempImg = op.filter(mushroomImg, null);
 
             drawImage(tempImg, 0.8);
         } else {
-            drawImage(mushroomsImg, 0.8);
+            drawImage(mushroomImg, 0.8);
         }
     }
 

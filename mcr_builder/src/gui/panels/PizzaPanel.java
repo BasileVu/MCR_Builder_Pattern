@@ -16,8 +16,8 @@ public class PizzaPanel extends JPanel {
 
         JButton addDoughButton = new JButton("Dough");
         JButton addBasilButton = new JButton("Basil");
-        JButton addOlivesButton = new JButton("Olives");
-        JButton addMushroomsButton = new JButton("Mushrooms");
+        JButton addOlivesButton = new JButton("Olive");
+        JButton addMushroomsButton = new JButton("Mushroom");
         JButton addTomatoButton = new JButton("Tomato");
         JButton addOnionButton = new JButton("Onion");
         JButton addMozzarellaButton = new JButton("Mozzarella");

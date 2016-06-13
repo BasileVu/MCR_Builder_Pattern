@@ -49,13 +49,15 @@ public class BurgerDisplay extends FoodDisplay {
         bottomBreadImg = loadImage(IMG_FOLDER + "bread_bottom.png");
         middleBreadImg = loadImage(IMG_FOLDER + "bread_middle.png");
         topBreadImg = loadImage(IMG_FOLDER + "bread_top_sesame.png");
-        tomatoImg = loadImage(IMG_FOLDER + "tomato_slices.png");
+        tomatoImg = loadImage(IMG_FOLDER + "tomato_slice.png");
         meatImg = loadImage(IMG_FOLDER + "meat.png");
         saladImg = loadImage(IMG_FOLDER + "salad.png");
         onionImg = loadImage(IMG_FOLDER + "onion1.png");
         pickleImg = loadImage(IMG_FOLDER + "pickle.png");
         cheddarImg = loadImage(IMG_FOLDER + "cheddar1.png");
+        meltedCheddarImg = loadImage(IMG_FOLDER + "melted_cheddar1.png");
         gruyereImg = loadImage(IMG_FOLDER + "gruyere.png");
+        meltedGruyereImg = loadImage(IMG_FOLDER + "melted_gruyere.png");
         eggImg = loadImage(IMG_FOLDER + "egg.png");
         ketchupImg = loadImage(IMG_FOLDER + "ketchup.png");
         mayoImg = loadImage(IMG_FOLDER+ "mayo.png");

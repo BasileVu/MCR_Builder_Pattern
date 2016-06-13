@@ -196,7 +196,7 @@ public abstract class FoodDisplay {
      * Defines what will the display will do with the ingredient (how to display it).
      * @param olives The ingredient to display.
      */
-    public void visit(Olives olives) {
+    public void visit(Olive olives) {
         throw new NotImplementedException();
     }
 
@@ -204,7 +204,7 @@ public abstract class FoodDisplay {
      * Defines what will the display will do with the ingredient (how to display it).
      * @param mushrooms The ingredient to display.
      */
-    public void visit(Mushrooms mushrooms) {
+    public void visit(Mushroom mushrooms) {
         throw new NotImplementedException();
     }
 }
