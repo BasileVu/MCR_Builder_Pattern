@@ -2,6 +2,7 @@ package gui.panels;
 
 import builder.PizzaBuilder;
 import exceptions.MissingBaseException;
+import gui.visitor.PizzaDisplay;
 import ingredient.*;
 
 import javax.swing.*;
@@ -13,18 +14,18 @@ import java.awt.image.RescaleOp;
  */
 public class PizzaBuildPanel extends JPanel {
 
-    private final PizzaBuilder builder;
+    private final PizzaBuilder builder = new PizzaBuilder();
+    private final PizzaDisplay display;
     private RescaleOp op;
 
     public PizzaBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
-        builder = new PizzaBuilder();
+        display = new PizzaDisplay(this);
         op = new RescaleOp(0.9f, 0, null);
     }
 
     public void buildBase() {
-        Dough base = new Dough();
-        builder.buildBase(base);
+        builder.buildBase();
         repaint();
     }
 
@@ -94,14 +95,8 @@ public class PizzaBuildPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        /*Ingredient[] ingredients = builder.getProgress().getIngredients();
-
-        for (Ingredient ing : ingredients) {
-            ImageContext context = manager.getImageContext(ing);
-            BufferedImage baseImage = (BufferedImage) context.getImage();
-
-            g.drawImage((baseImage.getScaledInstance((int) (0.75 * getWidth()), (int) (0.7 * getHeight()), Image.SCALE_DEFAULT)),
-                    (int) (0.125 * getWidth()), (int)(0.2 * getHeight()), null);
-        }*/
+        for (Ingredient i : builder.getProgress().getIngredients()) {
+            i.accept(display);
+        }
     }
 }

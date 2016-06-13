@@ -1,19 +1,18 @@
 package gui.visitor;
 
-import gui.pizzaIngredient.MiddleBread;
 import ingredient.*;
 
-import java.awt.*;
+import javax.swing.*;
 
 /**
  * Created by Basile Vu on 13.06.2016.
  */
 public class PizzaDisplay implements FoodDisplay {
 
-    private final Graphics graphics;
+    private final JPanel panel;
 
-    public PizzaDisplay(Graphics g) {
-        this.graphics = g;
+    public PizzaDisplay(JPanel panel) {
+        this.panel = panel;
     }
 
     @Override
