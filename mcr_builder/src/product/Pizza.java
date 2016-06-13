@@ -16,7 +16,8 @@ public class Pizza extends FoodProduct{
         this.ingredients = init(ingredients);
     }
 
-    private Ingredient[] init(ArrayList<Ingredient> ingredients) {
+    @Override
+    protected Ingredient[] init(ArrayList<Ingredient> ingredients) {
         if (base == null) {
             return new Ingredient[0];
         }
