@@ -22,7 +22,7 @@ public class BurgerBuildPanel extends JPanel {
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         builder = new BurgerBuilder();
-        display = new BurgerDisplay(getGraphics());
+        display = new BurgerDisplay(this);
         op = new RescaleOp(0.9f, 0, null);
     }
 
@@ -88,9 +88,9 @@ public class BurgerBuildPanel extends JPanel {
     public void bake() {
         builder.bake();
 
-        /*BurgerIngredient[] ingredients = builder.getProgress().getIngredients();
+        /*Ingredient[] ingredients = builder.getProgress().getIngredients();
 
-        for (BurgerIngredient ing : ingredients) {
+        for (Ingredient ing : ingredients) {
 
             if (context.getImageName() == BurgerImageManager.CHEDDAR) {
                 // todo : à remplacer par une image de cheddar fondue
@@ -141,15 +141,5 @@ public class BurgerBuildPanel extends JPanel {
         for (Ingredient i : ingredients) {
             i.accept(display);
         }
-
-        // fixme : je crois qu'on dessine plusieurs fois les même images
-        /*for (Ingredient ing : ingredients) {
-            ImageContext context = manager.getImageContext(ing);
-            BufferedImage baseImage = (BufferedImage) context.getImage();
-            offset += context.getBottomSpacingRatio() * getHeight();
-
-            g.drawImage((baseImage.getScaledInstance((int) (0.75 * getWidth()), (int) (0.3 * getHeight()), Image.SCALE_DEFAULT)),
-                    (int) (0.125 * getWidth()), (int)(0.6 * getHeight()) - offset, null);
-        }*/
     }
 }

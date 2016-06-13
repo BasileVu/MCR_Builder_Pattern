@@ -8,6 +8,6 @@ import gui.visitor.FoodDisplay;
 public class Ketchup extends Sauce {
     @Override
     public void accept(FoodDisplay display) {
-
+        display.visit(this);
     }
 }
