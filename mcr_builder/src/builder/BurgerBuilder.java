@@ -57,7 +57,7 @@ public class BurgerBuilder extends FoodBuilder {
         }
 
         for (Ingredient i: ingredients) {
-            i.safeBake();
+            i.bake();
         }
     }
 

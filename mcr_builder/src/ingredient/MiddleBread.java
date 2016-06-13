@@ -3,7 +3,7 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Represents a middle bread in a burger.
  */
 public class MiddleBread extends BurgerBread {
     @Override

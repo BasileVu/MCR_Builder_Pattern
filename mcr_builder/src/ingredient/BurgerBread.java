@@ -1,7 +1,7 @@
 package ingredient;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Represents the bread of a burger.
  */
 public abstract class BurgerBread extends BurnableIngredient {
     public BurgerBread() {

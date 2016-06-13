@@ -3,9 +3,9 @@ package ingredient;
 import gui.display.FoodDisplay;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Represents the cheddar ingredient.
  */
-public class Cheddar extends MeltableIngredient {
+public class Cheddar extends Cheese {
     public Cheddar() {
         super(2);
     }

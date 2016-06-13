@@ -1,7 +1,7 @@
 package ingredient;
 
 /**
- * Created by Basile Vu on 13.06.2016.
+ * Represents an ingredient that is a sauce.
  */
 public abstract class Sauce extends Ingredient {
 
