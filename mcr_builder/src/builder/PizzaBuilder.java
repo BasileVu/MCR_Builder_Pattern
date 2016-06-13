@@ -13,6 +13,7 @@ import product.Pizza;
 public class PizzaBuilder extends FoodBuilder {
     private Dough base;
 
+    @Override
     public void buildBase() throws BaseAlreadyCreatedException {
         if (base != null) {
             throw new BaseAlreadyCreatedException();
@@ -33,6 +34,10 @@ public class PizzaBuilder extends FoodBuilder {
         ingredients.add(ingredient);
     }
 
+    /**
+     * Bakes the ingredients. If a meltable ingredient is there, all the burnable ingredients (except base) under it
+     * cannot be burned.
+     */
     @Override
     public void bake() {
         if (base != null) {
@@ -52,10 +57,18 @@ public class PizzaBuilder extends FoodBuilder {
         }
     }
 
+    /**
+     * Gets the temporary pizza (used for the display in GUI).
+     * @return The temporary pizza.
+     */
     public Pizza getProgress() {
         return new Pizza(base, ingredients);
     }
 
+    /**
+     * Gets the pizza built (used for the display in GUI).
+     * @return The pizza built.
+     */
     public Pizza getPizza() throws MissingBaseException {
         if (base == null) {
             throw new MissingBaseException();

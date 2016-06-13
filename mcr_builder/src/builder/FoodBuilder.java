@@ -1,5 +1,6 @@
 package builder;
 
+import exceptions.BaseAlreadyCreatedException;
 import ingredient.Ingredient;
 
 import java.util.ArrayList;
@@ -10,6 +11,13 @@ import java.util.ArrayList;
 public abstract class FoodBuilder {
 
     protected ArrayList<Ingredient> ingredients = new ArrayList<>();
+
+    /**
+     * Builds the base of the product.
+     *
+     * @throws BaseAlreadyCreatedException
+     */
+    public void buildBase() throws BaseAlreadyCreatedException {}
 
     /**
      * Bakes the food.

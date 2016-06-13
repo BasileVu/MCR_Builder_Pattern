@@ -13,11 +13,7 @@ public class BurgerBuilder extends FoodBuilder {
     private BottomBread base;
     private TopBread top;
 
-    /**
-     * Builds the base of the burger.
-     *
-     * @throws BaseAlreadyCreatedException
-     */
+    @Override
     public void buildBase() throws BaseAlreadyCreatedException {
         if (base != null) {
             throw new BaseAlreadyCreatedException();
