@@ -6,15 +6,12 @@ import ingredient.Ingredient;
 import ingredient.TopBread;
 import product.Burger;
 
-import java.util.ArrayList;
-
 /**
  * Created by Basile Vu on 24.05.2016.
  */
-public class BurgerBuilder {
+public class BurgerBuilder extends FoodBuilder {
     private BottomBread base;
     private TopBread top;
-    private final ArrayList<Ingredient> ingredients = new ArrayList<>();
 
     public void buildBase() throws BaseAlreadyCreatedException {
         if (base != null) {
@@ -49,12 +46,7 @@ public class BurgerBuilder {
         ingredients.add(ingredient);
     }
 
-    /**
-     * Bakes the Burger.
-     *
-     * For burnable ingredients, slightly burn them if they are not under a meltable topping.
-     * For meltable ingredients, melt them.
-     */
+    @Override
     public void bake() {
         if (base != null) {
             base.bake();

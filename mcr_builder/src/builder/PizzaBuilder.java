@@ -7,14 +7,10 @@ import ingredient.Ingredient;
 import ingredient.MeltableIngredient;
 import product.Pizza;
 
-import java.util.ArrayList;
-
 /**
  * Created by Basile Vu on 24.05.2016.
  */
-public class PizzaBuilder {
-
-    private final ArrayList<Ingredient> ingredients = new ArrayList<>();
+public class PizzaBuilder extends FoodBuilder {
     private Dough base;
 
     public void buildBase() throws BaseAlreadyCreatedException {
@@ -37,12 +33,7 @@ public class PizzaBuilder {
         ingredients.add(ingredient);
     }
 
-    /**
-     * Bakes the Pizza.
-     *
-     * For burnable ingredients, slightly burn them if they are not under a meltable topping.
-     * For meltable ingredients, melt them.
-     */
+    @Override
     public void bake() {
         if (base != null) {
             base.bake();
