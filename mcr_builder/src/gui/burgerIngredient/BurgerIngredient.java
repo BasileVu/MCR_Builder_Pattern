@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by Basile Vu on 13.06.2016.
  */
-public abstract class BurgerIngredient {
+public class BurgerIngredient {
     private BufferedImage image;
     private final Ingredient ingredient;
     private double bottomSpacing;
@@ -33,5 +33,5 @@ public abstract class BurgerIngredient {
 
     double getBottomSpacing() {
         return bottomSpacing;
-    }
+
 }

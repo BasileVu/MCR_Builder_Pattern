@@ -5,13 +5,14 @@ import gui.visitor.FoodDisplay;
 /**
  * Created by Basile Vu on 13.06.2016.
  */
-public class Tomato extends BurnableIngredient {
-    public Tomato() {
-        super(2);
+public class BottomBread extends BurnableIngredient {
+
+    public BottomBread(int burnThreshold) {
+        super(burnThreshold);
     }
 
     @Override
     public void accept(FoodDisplay display) {
-        display.visit(this);
+
     }
 }

@@ -4,9 +4,8 @@ import builder.BurgerBuilder;
 import exceptions.MissingBaseException;
 import exceptions.TopAlreadyPlacedException;
 import gui.BurgerImageManager;
-import ingredient.BurnableIngredient;
-import ingredient.Ingredient;
-import ingredient.MeltableIngredient;
+import gui.visitor.BurgerDisplay;
+import ingredient.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +17,13 @@ import java.awt.image.RescaleOp;
 public class BurgerBuildPanel extends JPanel {
 
     private final BurgerBuilder builder;
-    private BurgerImageManager manager;
+    private final BurgerDisplay display;
     private RescaleOp op;
 
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         builder = new BurgerBuilder();
-        manager = new BurgerImageManager();
+        display = new BurgerDisplay(getGraphics());
         op = new RescaleOp(0.9f, 0, null);
     }
 
@@ -51,43 +50,43 @@ public class BurgerBuildPanel extends JPanel {
     }
 
     public void addMeat() {
-        addIngredient(new BurnableIngredient(1), BurgerImageManager.MEAT, 0.06);
+        addIngredient(new Meat());
     }
 
     public void addTomato() {
-        addIngredient(new BurnableIngredient(1), BurgerImageManager.TOMATO, 0.04);
+        addIngredient(new Tomato());
     }
 
     public void addSalad() {
-        addIngredient(new BurnableIngredient(1), BurgerImageManager.SALAD, 0.04);
+        addIngredient(new Salad());
     }
 
     public void addOnion() {
-        addIngredient(new BurnableIngredient(1), BurgerImageManager.ONION, 0.02);
+        addIngredient(new Onion());
     }
 
     public void addPickle() {
-        addIngredient(new BurnableIngredient(1), BurgerImageManager.PICKLE, 0.02);
+        addIngredient(new Pickle());
     }
 
     public void addEgg() {
-        addIngredient(new BurnableIngredient(1), BurgerImageManager.EGG, 0.02);
+        addIngredient(new Egg());
     }
 
     public void addCheddar() {
-        addIngredient(new MeltableIngredient(1), BurgerImageManager.CHEDDAR, 0.02);
+        addIngredient(new Cheddar());
     }
 
     public void addGruyere() {
-        addIngredient(new MeltableIngredient(1), BurgerImageManager.GRUYERE, 0.02);
+        addIngredient(new Gruyere());
     }
 
     public void addKetchup() {
-        addIngredient(new Ingredient(), BurgerImageManager.KETCHUP, 0);
+        addIngredient(new Ketchup());
     }
 
     public void addMayo() {
-        addIngredient(new Ingredient(), BurgerImageManager.MAYO, 0);
+        addIngredient(new Mayo());
     }
 
     public void bake() {
@@ -124,7 +123,7 @@ public class BurgerBuildPanel extends JPanel {
         // TODO
     }
 
-    private void addIngredient(Ingredient i, String imageName, double bottomSpacingRatio) {
+    private void addIngredient(Ingredient i) {
         try {
             builder.addIngredient(i);
             //manager.registerBurgerIngredient(i, imageName, bottomSpacingRatio);
@@ -142,6 +141,10 @@ public class BurgerBuildPanel extends JPanel {
 
         int offset = 0;
         Ingredient[] ingredients = builder.getProgress().getIngredients();
+
+        for (Ingredient i : ingredients) {
+            i.accept(display);
+        }
 
         // fixme : je crois qu'on dessine plusieurs fois les même images
         /*for (Ingredient ing : ingredients) {

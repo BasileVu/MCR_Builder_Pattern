@@ -5,8 +5,8 @@ import gui.visitor.FoodDisplay;
 /**
  * Created by Basile Vu on 13.06.2016.
  */
-public class Tomato extends BurnableIngredient {
-    public Tomato() {
+public class Cheddar extends MeltableIngredient {
+    public Cheddar() {
         super(2);
     }
 
