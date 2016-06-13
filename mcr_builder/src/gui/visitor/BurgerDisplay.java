@@ -16,6 +16,7 @@ import java.io.IOException;
 public class BurgerDisplay implements FoodDisplay {
 
     private final JPanel panel;
+    private Graphics graphics;
 
     private BufferedImage bottomBreadImg;
     private BufferedImage middleBreadImg;
@@ -35,8 +36,9 @@ public class BurgerDisplay implements FoodDisplay {
 
     private int offset = 0;
 
-    public BurgerDisplay(JPanel panel) {
+    public BurgerDisplay(JPanel panel, Graphics graphics) {
         this.panel = panel;
+        this.graphics = graphics;
         loadImages();
     }
 
@@ -76,12 +78,12 @@ public class BurgerDisplay implements FoodDisplay {
 
     @Override
     public void visit(Meat meat) {
-        drawImage(meatImg, );
+        //drawImage(meatImg, );
     }
 
     @Override
     public void visit(BottomBread bottomBread) {
-        drawImage(bottomBread, );
+        drawImage(bottomBreadImg, 0);
     }
 
     @Override
@@ -138,6 +140,10 @@ public class BurgerDisplay implements FoodDisplay {
         offset += bottomSpacingRatio * panel.getHeight();
         Image rescaled = image.getScaledInstance((int) (0.75 * panel.getWidth()), (int) (0.3 * panel.getHeight()), Image.SCALE_DEFAULT);
 
-        panel.getGraphics().drawImage(rescaled, (int) (0.125 * panel.getWidth()), (int)(0.6 * panel.getHeight()) - offset, null);
+        graphics.drawImage(rescaled, (int) (0.125 * panel.getWidth()), (int)(0.6 * panel.getHeight()) - offset, null);
+    }
+
+    public void setGraphics(Graphics graphics) {
+        this.graphics = graphics;
     }
 }

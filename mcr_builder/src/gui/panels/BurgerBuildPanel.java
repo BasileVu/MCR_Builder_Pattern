@@ -22,13 +22,12 @@ public class BurgerBuildPanel extends JPanel {
     public BurgerBuildPanel() {
         setPreferredSize(new Dimension(600, 600));
         builder = new BurgerBuilder();
-        display = new BurgerDisplay(this);
+        display = new BurgerDisplay(this, getGraphics());
         op = new RescaleOp(0.9f, 0, null);
     }
 
     public void addBottomBread() {
         builder.buildBase();
-        //manager.registerBurgerIngredient(base, BurgerImageManager.BREAD_BOTTOM, 0);
         repaint();
     }
 
@@ -122,7 +121,6 @@ public class BurgerBuildPanel extends JPanel {
     private void addIngredient(Ingredient i) {
         try {
             builder.addIngredient(i);
-            //manager.registerBurgerIngredient(i, imageName, bottomSpacingRatio);
         } catch (MissingBaseException e) {
             System.err.println("Missing bottom bread");
         } catch (TopAlreadyPlacedException e) {
@@ -135,8 +133,8 @@ public class BurgerBuildPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int offset = 0;
         Ingredient[] ingredients = builder.getProgress().getIngredients();
+        display.setGraphics(g);
 
         for (Ingredient i : ingredients) {
             i.accept(display);
