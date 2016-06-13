@@ -132,7 +132,7 @@ public class BurgerBuildPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         display.reset();
         display.setGraphics(g);
 

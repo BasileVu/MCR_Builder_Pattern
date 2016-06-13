@@ -20,6 +20,7 @@ public class PizzaDisplay implements FoodDisplay {
     private BufferedImage doughImg;
     private BufferedImage onionImg;
     private BufferedImage mozzarellaImg;
+    private BufferedImage meltedMozzarellaImg;
     private BufferedImage tomatoSauceImg;
     private BufferedImage olivesImg;
     private BufferedImage mushroomsImg;
@@ -29,12 +30,14 @@ public class PizzaDisplay implements FoodDisplay {
 
     public PizzaDisplay(JPanel panel) {
         this.panel = panel;
+        loadImages();
     }
 
     private void loadImages() {
-        doughImg = loadImage("bread_top_sesame.png");
+        doughImg = loadImage("dough.png");
         onionImg = loadImage("onion.png");
         mozzarellaImg = loadImage("mozzarella.png");
+        meltedMozzarellaImg = loadImage("mozzarella.png");
         tomatoSauceImg = loadImage("tomato_sauce.png");
         olivesImg = loadImage("olives.png");
         mushroomsImg = loadImage("mushrooms.png");
@@ -62,7 +65,12 @@ public class PizzaDisplay implements FoodDisplay {
 
     @Override
     public void visit(Mozzarella mozzarella) {
-        drawImage(mozzarellaImg, 0.9);
+
+        if (mozzarella.isMelted()) {
+            drawImage(meltedMozzarellaImg, 0.9);
+        } else {
+            drawImage(mozzarellaImg, 0.9);
+        }
     }
 
     @Override
@@ -87,10 +95,10 @@ public class PizzaDisplay implements FoodDisplay {
 
     private void drawImage(BufferedImage image, double scaleRatio) {
         Image rescaled = image.getScaledInstance(
-                (int) (0.75 * panel.getWidth() * scaleRatio),
-                (int) (0.3 * panel.getHeight() * scaleRatio),
+                (int) (0.7 * panel.getWidth() * scaleRatio),
+                (int) (0.7 * panel.getHeight() * scaleRatio),
                 Image.SCALE_DEFAULT);
-        graphics.drawImage(rescaled, (int) (0.125 * panel.getWidth()), (int)(0.6 * panel.getHeight()), null);
+        graphics.drawImage(rescaled, (int) (0.125 * panel.getWidth()), (int)(0.2 * panel.getHeight()), null);
     }
 
     public void setGraphics(Graphics graphics) {
