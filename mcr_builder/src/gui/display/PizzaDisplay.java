@@ -82,7 +82,7 @@ public class PizzaDisplay extends FoodDisplay {
     @Override
     public void visit(Olive olive) {
         if (olive.isBurned()) {
-           tempImg = op.filter(oliveImg, oliveImg);
+           tempImg = op.filter(oliveImg, null);
 
             drawImage(tempImg, 0.8);
         } else {
