@@ -26,4 +26,9 @@ public abstract class FoodBuilder {
      * For meltable ingredients, melt them.
      */
     public void bake() {}
+
+    /**
+     * Reinitialize the content of the specific FoodBuilder (PizzaBuilder or BurgerBuilder)
+     */
+    public void reset() {}
 }

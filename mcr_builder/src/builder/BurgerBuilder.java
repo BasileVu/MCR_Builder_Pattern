@@ -93,6 +93,7 @@ public class BurgerBuilder extends FoodBuilder {
         return new Burger(base, top, ingredients);
     }
 
+    @Override
     public void reset() {
         base = null;
         top = null;
