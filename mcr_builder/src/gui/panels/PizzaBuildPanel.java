@@ -41,7 +41,7 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void addOlives() {
-        addIngredient(new Olives());
+        addIngredient(new Olive());
     }
 
     public void addMozzarella() {
@@ -49,7 +49,7 @@ public class PizzaBuildPanel extends JPanel {
     }
 
     public void addMushrooms() {
-        addIngredient(new Mushrooms());
+        addIngredient(new Mushroom());
     }
 
     public void addOnion() {
@@ -88,5 +88,10 @@ public class PizzaBuildPanel extends JPanel {
         for (Ingredient i : builder.getProgress().getIngredients()) {
             i.accept(display);
         }
+    }
+
+    public void reinitialize() {
+        builder.reset();
+        repaint();
     }
 }

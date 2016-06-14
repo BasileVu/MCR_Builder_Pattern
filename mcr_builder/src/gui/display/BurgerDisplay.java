@@ -2,9 +2,12 @@ package gui.display;
 
 import ingredient.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Allows ingredients displaying for a burger. For all ingredients, use their associated images and bottom-spacing (the
@@ -21,7 +24,9 @@ public class BurgerDisplay extends FoodDisplay {
     private BufferedImage onionImg;
     private BufferedImage pickleImg;
     private BufferedImage cheddarImg;
+    private BufferedImage meltedCheddarImg;
     private BufferedImage gruyereImg;
+    private BufferedImage meltedGruyereImg;
     private BufferedImage eggImg;
     private BufferedImage ketchupImg;
     private BufferedImage mayoImg;
@@ -35,84 +40,157 @@ public class BurgerDisplay extends FoodDisplay {
         loadImages();
     }
 
+    /**
+     * Resets the offset. Must be called EVERYTIME before drawing a burger (otherwise the ingredients will not be drawn
+     * where there should be (drawn too high).
+     */
     @Override
     protected void loadImages() {
         bottomBreadImg = loadImage(IMG_FOLDER + "bread_bottom.png");
         middleBreadImg = loadImage(IMG_FOLDER + "bread_middle.png");
         topBreadImg = loadImage(IMG_FOLDER + "bread_top_sesame.png");
-        tomatoImg = loadImage(IMG_FOLDER + "tomato_slices.png");
+        tomatoImg = loadImage(IMG_FOLDER + "tomato_slice.png");
         meatImg = loadImage(IMG_FOLDER + "meat.png");
         saladImg = loadImage(IMG_FOLDER + "salad.png");
         onionImg = loadImage(IMG_FOLDER + "onion1.png");
         pickleImg = loadImage(IMG_FOLDER + "pickle.png");
         cheddarImg = loadImage(IMG_FOLDER + "cheddar1.png");
+        meltedCheddarImg = loadImage(IMG_FOLDER + "melted_cheddar1.png");
         gruyereImg = loadImage(IMG_FOLDER + "gruyere.png");
+        meltedGruyereImg = loadImage(IMG_FOLDER + "melted_gruyere.png");
         eggImg = loadImage(IMG_FOLDER + "egg.png");
         ketchupImg = loadImage(IMG_FOLDER + "ketchup.png");
         mayoImg = loadImage(IMG_FOLDER+ "mayo.png");
     }
 
-    /**
-     * Resets the offset. Must be called EVERYTIME before drawing a burger (otherwise the ingredients will not be drawn
-     * where there should be (drawn too high).
-     */
+    protected BufferedImage loadImage(String name) {
+        try {
+            return ImageIO.read(new File(name));
+        } catch (IOException e) {
+            System.err.println(name + " could not be loaded");
+        }
+        return null;
+    }
+
     public void reset() {
         offset = 0;
     }
 
     @Override
     public void visit(Tomato tomato) {
-        drawImage(tomatoImg, 0.02);
+        if (tomato.isBurned()) {
+            tempImg = op.filter(tomatoImg, null);
+
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(tomatoImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Meat meat) {
-        drawImage(meatImg, 0.06);
+        if (meat.isBurned()) {
+            tempImg = op.filter(meatImg, null);
+
+            drawImage(tempImg, 0.06);
+        } else {
+            drawImage(meatImg, 0.06);
+        }
     }
 
     @Override
     public void visit(BottomBread bottomBread) {
-        drawImage(bottomBreadImg, 0);
+        if (bottomBread.isBurned()) {
+            tempImg = op.filter(bottomBreadImg, null);
+
+            drawImage(tempImg, 0);
+        } else {
+            drawImage(bottomBreadImg, 0);
+        }
     }
 
     @Override
     public void visit(MiddleBread middleBread) {
-        drawImage(middleBreadImg, 0.05);
+        if (middleBread.isBurned()) {
+            tempImg = op.filter(middleBreadImg, null);
+
+            drawImage(tempImg, 0.05);
+        } else {
+            drawImage(middleBreadImg, 0.05);
+        }
     }
 
     @Override
     public void visit(TopBread topBread) {
-        drawImage(topBreadImg, 0.05);
+        if (topBread.isBurned()) {
+            tempImg = op.filter(topBreadImg, null);
+
+            drawImage(tempImg, 0.05);
+        } else {
+            drawImage(topBreadImg, 0.05);
+        }
     }
 
     @Override
     public void visit(Salad salad) {
-        drawImage(saladImg, 0.04);
+        if (salad.isBurned()) {
+            tempImg = op.filter(saladImg, null);
+
+            drawImage(tempImg, 0.04);
+        } else {
+            drawImage(saladImg, 0.04);
+        }
     }
 
     @Override
     public void visit(Onion onion) {
-        drawImage(onionImg, 0.02);
+        if (onion.isBurned()) {
+            tempImg = op.filter(onionImg, null);
+
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(onionImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Pickle pickle) {
-        drawImage(pickleImg, 0.02);
+        if (pickle.isBurned()) {
+            tempImg = op.filter(pickleImg, null);
+
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(pickleImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Cheddar cheddar) {
-        drawImage(cheddarImg, 0.02);
+        if (cheddar.isMelted()) {
+            drawImage(meltedCheddarImg, 0.02);
+        } else {
+            drawImage(cheddarImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Egg egg) {
-        drawImage(eggImg, 0.02);
+        if (egg.isBurned()) {
+            tempImg = op.filter(eggImg, null);
+
+            drawImage(tempImg, 0.02);
+        } else {
+            drawImage(eggImg, 0.02);
+        }
     }
 
     @Override
     public void visit(Gruyere gruyere) {
-        drawImage(gruyereImg, 0.02);
+        if (gruyere.isMelted()) {
+            drawImage(meltedGruyereImg, 0.02);
+        } else {
+            drawImage(gruyereImg, 0.02);
+        }
     }
 
     @Override

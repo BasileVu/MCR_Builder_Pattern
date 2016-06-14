@@ -5,8 +5,8 @@ import gui.display.FoodDisplay;
 /**
  * Represents the mushrooms ingredient.
  */
-public class Mushrooms extends BurnableIngredient {
-    public Mushrooms() {
+public class Mushroom extends BurnableIngredient {
+    public Mushroom() {
         super(2);
     }
 

@@ -76,4 +76,9 @@ public class PizzaBuilder extends FoodBuilder {
 
         return new Pizza(base, ingredients);
     }
+
+    public void reset() {
+        base = null;
+        ingredients.clear();
+    }
 }

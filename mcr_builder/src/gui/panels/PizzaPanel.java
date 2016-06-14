@@ -16,8 +16,8 @@ public class PizzaPanel extends JPanel {
 
         JButton addDoughButton = new JButton("Dough");
         JButton addBasilButton = new JButton("Basil");
-        JButton addOlivesButton = new JButton("Olives");
-        JButton addMushroomsButton = new JButton("Mushrooms");
+        JButton addOlivesButton = new JButton("Olive");
+        JButton addMushroomsButton = new JButton("Mushroom");
         JButton addTomatoButton = new JButton("Tomato");
         JButton addOnionButton = new JButton("Onion");
         JButton addMozzarellaButton = new JButton("Mozzarella");
@@ -44,12 +44,15 @@ public class PizzaPanel extends JPanel {
         pizzaButtonsRight.add(addMozzarellaButton);
 
         JButton bakeButton = new JButton("Bake");
+        JButton reinitializeButton = new JButton("Reinitialize");
         JButton getProductButton = new JButton("Get product");
         JPanel bottom = new JPanel();
         bottom.setLayout(new GridBagLayout());
         bottom.add(bakeButton);
+        bottom.add(reinitializeButton);
         bottom.add(getProductButton);
         bakeButton.addActionListener(ae -> pizzaBuildPanel.bake());
+        reinitializeButton.addActionListener(ae -> pizzaBuildPanel.reinitialize());
         getProductButton.addActionListener(ae -> pizzaBuildPanel.getProduct());
 
         add(pizzaBuildPanel, BorderLayout.CENTER);

@@ -2,59 +2,79 @@ package gui.display;
 
 import ingredient.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Allows ingredients displaying for a pizza. For all ingredients, use their associated images and scaling (how to scale
  * the image relatively to the base).
  */
 public class PizzaDisplay extends FoodDisplay {
-    private RescaleOp op;
 
+    private BufferedImage baseImg;
     private BufferedImage doughImg;
     private BufferedImage onionImg;
     private BufferedImage mozzarellaImg;
     private BufferedImage meltedMozzarellaImg;
     private BufferedImage tomatoSauceImg;
-    private BufferedImage olivesImg;
-    private BufferedImage mushroomsImg;
+    private BufferedImage oliveImg;
+    private BufferedImage mushroomImg;
     private BufferedImage basilImg;
 
     public static final String IMG_FOLDER = "design/pizza/exports/images/";
 
     public PizzaDisplay(JPanel panel) {
         super(panel);
-        op = new RescaleOp(0.6f, 0, null);
         loadImages();
     }
 
-    @Override
     protected void loadImages() {
-        doughImg = loadImage(IMG_FOLDER + "dough.png");
-        onionImg = loadImage(IMG_FOLDER + "onion.png");
-        mozzarellaImg = loadImage(IMG_FOLDER + "mozzarella.png");
-        meltedMozzarellaImg = loadImage(IMG_FOLDER + "melted_mozzarella.png");
-        tomatoSauceImg = loadImage(IMG_FOLDER + "tomato_sauce.png");
-        olivesImg = loadImage(IMG_FOLDER + "olives.png");
-        mushroomsImg = loadImage(IMG_FOLDER + "mushrooms.png");
-        basilImg = loadImage(IMG_FOLDER + "basil.png");
+        baseImg = loadImage("base.png");
+        doughImg = loadImage("dough.png");
+        onionImg = loadImage("onion.png");
+        mozzarellaImg = loadImage("mozzarella.png");
+        meltedMozzarellaImg = loadImage("melted_mozzarella.png");
+        tomatoSauceImg = loadImage("tomato_sauce.png");
+        oliveImg = loadImage("olive.png");
+        mushroomImg = loadImage("mushroom.png");
+        basilImg = loadImage("basil.png");
+    }
+
+    protected BufferedImage loadImage(String name) {
+        try {
+            return ImageIO.read(new File(IMG_FOLDER + name));
+        } catch (IOException e) {
+            System.err.println(name + " could not be loaded");
+        }
+        return null;
     }
 
     @Override
     public void visit(Dough dough) {
-        if (dough.isBurned()) {
-            op.filter(doughImg, doughImg);
-        }
+        drawImage(baseImg, 1);
 
-        drawImage(doughImg, 1);
+        if (dough.isBurned()) {
+            tempImg = op.filter(doughImg, null);
+
+            drawImage(tempImg, 0.7);
+        } else {
+            drawImage(doughImg, 0.7);
+        }
     }
 
     @Override
     public void visit(Onion onion) {
-        drawImage(onionImg, 0.8);
+        if (onion.isBurned()) {
+           tempImg = op.filter(onionImg, null);
+
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(onionImg, 0.8);
+        }
     }
 
     @Override
@@ -62,28 +82,46 @@ public class PizzaDisplay extends FoodDisplay {
         if (mozzarella.isMelted()) {
             drawImage(meltedMozzarellaImg, 0.8);
         } else {
-            drawImage(mozzarellaImg, 0.8);
+            drawImage(mozzarellaImg, 0.7);
         }
     }
 
     @Override
     public void visit(TomatoSauce tomatoSauce) {
-        drawImage(tomatoSauceImg, 0.8);
+        drawImage(tomatoSauceImg, 0.7);
     }
 
     @Override
-    public void visit(Olives olives) {
-        drawImage(olivesImg, 0.8);
+    public void visit(Olive olive) {
+        if (olive.isBurned()) {
+           tempImg = op.filter(oliveImg, oliveImg);
+
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(oliveImg, 0.8);
+        }
     }
 
     @Override
-    public void visit(Mushrooms mushrooms) {
-        drawImage(mushroomsImg, 0.8);
+    public void visit(Mushroom mushroom) {
+        if (mushroom.isBurned()) {
+            tempImg = op.filter(mushroomImg, null);
+
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(mushroomImg, 0.8);
+        }
     }
 
     @Override
     public void visit(Basil basil) {
-        drawImage(basilImg, 0.8);
+        if (basil.isBurned()) {
+            tempImg = op.filter(basilImg, null);
+
+            drawImage(tempImg, 0.8);
+        } else {
+            drawImage(basilImg, 0.8);
+        }
     }
 
     /**

@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 
@@ -17,9 +18,14 @@ public abstract class FoodDisplay {
 
     protected final JPanel panel;
     protected Graphics graphics;
+    protected RescaleOp op;
+    protected BufferedImage tempImg;
 
     public FoodDisplay(JPanel panel) {
         this.panel = panel;
+        float[] scales = {0f, 0f, 0f, 1f};
+        float[] offsets = new float[4];
+        op = new RescaleOp(scales, offsets, null);
     }
 
     /**
@@ -190,7 +196,7 @@ public abstract class FoodDisplay {
      * Defines what will the display will do with the ingredient (how to display it).
      * @param olives The ingredient to display.
      */
-    public void visit(Olives olives) {
+    public void visit(Olive olives) {
         throw new NotImplementedException();
     }
 
@@ -198,7 +204,7 @@ public abstract class FoodDisplay {
      * Defines what will the display will do with the ingredient (how to display it).
      * @param mushrooms The ingredient to display.
      */
-    public void visit(Mushrooms mushrooms) {
+    public void visit(Mushroom mushrooms) {
         throw new NotImplementedException();
     }
 }

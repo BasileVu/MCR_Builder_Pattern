@@ -5,8 +5,8 @@ import gui.display.FoodDisplay;
 /**
  * Represents the olives ingredient.
  */
-public class Olives extends BurnableIngredient {
-    public Olives() {
+public class Olive extends BurnableIngredient {
+    public Olive() {
         super(2);
     }
 
