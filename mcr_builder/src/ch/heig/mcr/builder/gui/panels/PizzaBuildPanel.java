@@ -70,6 +70,7 @@ public class PizzaBuildPanel extends JPanel {
         } catch (MissingBaseException e) {
             JOptionPane.showMessageDialog(this, "The dough is missing.");
         }
+        repaint();
     }
 
     private void addIngredient(Ingredient i) {

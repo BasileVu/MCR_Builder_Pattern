@@ -47,7 +47,7 @@ public class PizzaPanel extends JPanel {
 
         JButton bakeButton = new JButton("Bake");
         JButton reinitializeButton = new JButton("Reinitialize");
-        JButton getProductButton = new JButton("Get ch.heig.mcr.builder.product");
+        JButton getProductButton = new JButton("Get product");
         JPanel bottom = new JPanel();
         bottom.setLayout(new GridBagLayout());
         bottom.add(bakeButton);

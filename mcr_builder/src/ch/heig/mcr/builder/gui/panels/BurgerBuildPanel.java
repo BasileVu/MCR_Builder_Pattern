@@ -103,6 +103,7 @@ public class BurgerBuildPanel extends JPanel {
         } catch (MissingTopException e) {
             JOptionPane.showMessageDialog(this, "The top bread is missing.");
         }
+        repaint();
     }
 
     private void addIngredient(Ingredient i) {

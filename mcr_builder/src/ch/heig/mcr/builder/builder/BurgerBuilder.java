@@ -92,7 +92,9 @@ public class BurgerBuilder extends FoodBuilder {
             throw new MissingTopException();
         }
 
-        return new Burger(base, top, ingredients);
+        Burger b = new Burger(base, top, ingredients);
+        reset();
+        return b;
     }
 
     @Override

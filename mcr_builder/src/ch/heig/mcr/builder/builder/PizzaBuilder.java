@@ -76,7 +76,9 @@ public class PizzaBuilder extends FoodBuilder {
             throw new MissingBaseException();
         }
 
-        return new Pizza(base, ingredients);
+        Pizza p = new Pizza(base, ingredients);
+        reset();
+        return p;
     }
 
     @Override
