@@ -2,12 +2,9 @@ package gui.display;
 
 import ingredient.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Allows ingredients displaying for a burger. For all ingredients, use their associated images and bottom-spacing (the
@@ -61,15 +58,6 @@ public class BurgerDisplay extends FoodDisplay {
         eggImg = loadImage(IMG_FOLDER + "egg.png");
         ketchupImg = loadImage(IMG_FOLDER + "ketchup.png");
         mayoImg = loadImage(IMG_FOLDER+ "mayo.png");
-    }
-
-    protected BufferedImage loadImage(String name) {
-        try {
-            return ImageIO.read(new File(name));
-        } catch (IOException e) {
-            System.err.println(name + " could not be loaded");
-        }
-        return null;
     }
 
     public void reset() {
